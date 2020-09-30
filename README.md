@@ -26,8 +26,8 @@ $ git clone https://github.com/spack/spack.git
 $ . spack/share/spack/setup-env.sh
 ```
 
-You may want to put the second line in your `.bashrc` file so that it
-gets executed when opening a terminal.
+Remember that the second line needs to be executed every time you open a new
+terminal.
 
 You will then need to clone `sds-repo`, which contains the Mochi packages.
 
