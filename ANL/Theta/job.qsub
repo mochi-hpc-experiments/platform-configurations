@@ -9,7 +9,6 @@ set -eu
 
 export MPICH_GNI_NDREG_ENTRIES=1024
 export HDF5_USE_FILE_LOCKING=FALSE
-export CRAYPE_LINK_TYPE=dynamic
 
 PDOMAIN=mypdomain
 
