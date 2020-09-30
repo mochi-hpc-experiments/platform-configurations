@@ -24,6 +24,15 @@ Networking
 Bebop uses an Intel Omnipath fabric. The corresponding transport in
 Mercury is `ofi+psm2`, using the `+psm2` variant in `libfabric`.
 
+The `PSM2_MULTI_EP` environment variable should be set to 1 in your job script
+to avoid conflict between MPI and Mercury when using the PSM2 network.
+
+The `FI_PSM2_DISCONNECT` environment variable should be set to 1 if you plan
+to have distinct Mercury applications dictonnect and reconnect to each other
+(e.g. if you have a long running data service on a set of nodes and a set
+of applications deployed one after the other on the rest of the nodes, and using
+the service).
+
 
 Job management
 --------------
