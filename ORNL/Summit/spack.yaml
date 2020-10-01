@@ -19,7 +19,7 @@ spack:
       flags: {}
       spec: gcc@9.1.0
   repos:
-  - /path/to/sds-repo
+  - /ccs/home/mdorier1/sds-repo
   packages:
     all:
       compiler: [gcc@9.1.0]
@@ -54,8 +54,8 @@ spack:
       providers: {}
       externals:
       - modules:
-        - cmake/3.14.5
-        spec: cmake@3.14.5
+        - cmake/3.18.2
+        spec: cmake@3.18.2
       compiler: []
     libfabric:
       variants: fabrics=verbs,rxm,mrail
