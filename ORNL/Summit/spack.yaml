@@ -47,8 +47,18 @@ spack:
       target: []
       providers: {}
       compiler: []
+    cmake:
+      version: []
+      target: []
+      buildable: false
+      providers: {}
+      externals:
+      - modules:
+        - cmake/3.14.5
+        spec: cmake@3.14.5
+      compiler: []
     libfabric:
-      variants: fabrics=verbs,rxm
+      variants: fabrics=verbs,rxm,mrail
       buildable: true
       version: []
       target: []
