@@ -30,7 +30,7 @@ Mercury is `ofi+gni`, using the `+gni` variant in `libfabric`.
 Job management
 --------------
 
-Bebop uses the Cobalt workload manager. `job.qsub` is an example
+Theta uses the Cobalt workload manager. `job.qsub` is an example
 of job file. Please modify the header (lines starting with `#COBALT`)
 to use your project allocation and set relevant parameters. You can
 refer to [the documentation here](https://www.alcf.anl.gov/support-center/theta/submit-job-theta)
