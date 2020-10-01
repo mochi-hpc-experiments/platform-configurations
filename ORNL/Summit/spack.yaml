@@ -1,7 +1,7 @@
 spack:
   specs:
   - mochi-margo%gcc@9.1.0
-  - mercury@master # 2.0.0rc1 doesn't build; remove this line when 2.0.0 comes out
+  - mercury@master%gcc@9.1.0 # 2.0.0rc1 doesn't build; remove this line when 2.0.0 comes out
   concretization: together
   compilers:
   - compiler:
@@ -19,7 +19,7 @@ spack:
       flags: {}
       spec: gcc@9.1.0
   repos:
-  - /ccs/home/mdorier1/sds-repo
+  - /path/to/sds-repo
   packages:
     all:
       compiler: [gcc@9.1.0]
@@ -29,25 +29,6 @@ spack:
       buildable: true
       version: []
       target: []
-    spectrum-mpi:
-      externals:
-      - spec: spectrum-mpi@10.3.1.2%gcc%9.1.0
-        modules:
-        - spectrum-mpi/10.3.1.2-20200121
-      buildable: false
-      version: []
-      target: []
-      providers: {}
-      compiler: []
-    openssl:
-      externals:
-      - spec: openssl@1.0.2k
-        prefix: /usr
-      buildable: false
-      version: []
-      target: []
-      providers: {}
-      compiler: []
     autoconf:
       externals:
       - spec: autoconf@2.69
@@ -66,20 +47,9 @@ spack:
       target: []
       providers: {}
       compiler: []
-    libtool:
-      externals:
-      - spec: libtool@2.4.2
-        prefix: /usr
-      buildable: false
-      version: []
-      target: []
-      providers: {}
-      compiler: []
-    ucx:
-      externals:
-      - spec: ucx@1.5.1
-        prefix: /usr
-      buildable: false
+    libfabric:
+      variants: fabrics=verbs,rxm
+      buildable: true
       version: []
       target: []
       providers: {}
@@ -94,9 +64,9 @@ spack:
       target: []
       providers: {}
       compiler: []
-    rdma-core:
+    libtool:
       externals:
-      - spec: rdma-core@20
+      - spec: libtool@2.4.2
         prefix: /usr
       buildable: false
       version: []
@@ -110,9 +80,39 @@ spack:
       target: []
       providers: {}
       compiler: []
-    libfabric:
-      variants: fabrics=verbs,rxm
-      buildable: true
+    openssl:
+      externals:
+      - spec: openssl@1.0.2k
+        prefix: /usr
+      buildable: false
+      version: []
+      target: []
+      providers: {}
+      compiler: []
+    rdma-core:
+      externals:
+      - spec: rdma-core@20
+        prefix: /usr
+      buildable: false
+      version: []
+      target: []
+      providers: {}
+      compiler: []
+    spectrum-mpi:
+      externals:
+      - spec: spectrum-mpi@10.3.1.2%gcc%9.1.0
+        modules:
+        - spectrum-mpi/10.3.1.2-20200121
+      buildable: false
+      version: []
+      target: []
+      providers: {}
+      compiler: []
+    ucx:
+      externals:
+      - spec: ucx@1.5.1
+        prefix: /usr
+      buildable: false
       version: []
       target: []
       providers: {}
