@@ -6,9 +6,9 @@ spack:
   - compiler:
       paths:
         cc: cc
-	cxx: CC
-	f77: ftn
-	fc: ftn
+        cxx: CC
+        f77: ftn
+        fc: ftn
       operating_system: cnl7
       target: any
       modules:
