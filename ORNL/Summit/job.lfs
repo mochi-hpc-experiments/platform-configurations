@@ -10,5 +10,8 @@ export FI_MR_CACHE_MAX_COUNT=0
 # use shared recv context in RXM; should improve scalability
 export FI_OFI_RXM_USE_SRX=1
 
-jsrun -a 1 -n 2 -r 1 -c ALL_CPUS ./margo-p2p-latency -i 100000 -n "ofi+verbs;ofi_rxm://"
-jsrun -a 1 -n 2 -r 1 -c ALL_CPUS ./margo-p2p-bw -x 1048576 -n "ofi+verbs;ofi_rxm://" -c 1 -D 20
+# Note that we explicitly specify the libfabric domain of "mlx5_0" on
+# Summit. Otherwise libfabric and/or libibverbs may select a default port
+# that does not work out of the box.
+jsrun -a 1 -n 2 -r 1 -c ALL_CPUS ./margo-p2p-latency -i 100000 -n "verbs://mlx5_0"
+jsrun -a 1 -n 2 -r 1 -c ALL_CPUS ./margo-p2p-bw -x 1048576 -n "verbs://mlx5_0" -c 1 -D 20
