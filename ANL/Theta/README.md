@@ -16,8 +16,9 @@ $ module swap PrgEnv-intel PrgEnv-gnu
 $ module load gcc/9.3.0
 ```
 
-You may want to `export CRAYPE_LINK_TYPE=dynamic` (e.g. in your `.bashrc` file)
-to avoid problems with dynamic libraries when building programs.
+You may also want to `export CRAYPE_LINK_TYPE=dynamic` (e.g. in your
+`.bashrc` file) to prevent the compiler from attempting to use static
+linking in conjunction with the dynamic libraries produced by Spack.
 
 
 Networking
@@ -42,18 +43,18 @@ Once modified, the job script may be submitted as follows.
 $ qsub ./job.qsub
 ```
 
-Note the use of a protection domain (pdomain): these are necessary if
-you have multiple applications, started using distinct `aprun` calls,
-and you want them to communicate via Mercury. Protection domains are
-global, but user-specific (i.e. you won't be able to use a pdomain
-setup by someone else, and you won't be able to use the same name
-as someone else's pdomain). There is a limited number of pdomains
-that can exist simultaneously, and they are not cleaned up when your
-job terminates, so please make sure to delete your pdomain at the
-end of your job.
+Note the use of a protection domain (pdomain).  Shared protection domains
+enable processes to communicate with each other even when launched with
+separate `aprun` commands.  Protection domains are global, but user-specific
+(i.e. you won't be able to use a pdomain setup by someone else, and you
+won't be able to use the same name as someone else's pdomain). There is
+a limited number of pdomains that can exist simultaneously, and they are
+not cleaned up when your job terminates, so please make sure to delete
+your pdomain at the end of your job.
+
+Note that other Cray systems may use `DRC (Dynamic RDMA Credentials)` rather
+than static protection domains for this purpose.  The protection domain
+configuration in this example is specific to the Theta system.
 
 The `MPICH_GNI_NDREG_ENTRIES` environment variable should be set
 to avoid conflicts between MPI and libfabric.
-	
-`HDF5_USE_FILE_LOCKING=FALSE` has been shown to be useful for some
-workloads using HDF5 on Lustre.

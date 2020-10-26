@@ -48,3 +48,7 @@ Once modified, the job script may be submitted as follows.
 ```
 $ sbatch ./job.sbatch
 ```
+
+Note that the job script explicitly multiple PSM2 environment variables that
+are necessary for Mochi compatibility.  Please copy these environment
+variables to any other Mochi job scripts that you create for the Bebop platform.

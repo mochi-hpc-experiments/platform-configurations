@@ -3,17 +3,17 @@ Platform configurations for Mochi
 
 This repository provides Spack configuration files, example job scripts, and
 notes about building and running Mochi-based codes on various platforms.
-Please refer to your platform of interest for more information.
+Please refer to the subdirectory for your platform of interest for more
+information.
 
 
 Using spack.yaml files
 ----------------------
 
 Each platform subdirectory in this repository provides a `spack.yaml` file.
-Such a file is meant to fully describe a Spack environment, including some system-provided
+A `spack.yaml` file fully describes a Spack environment, including system-provided
 packages and compilers. It does so independently of any `compilers.yaml` or `packages.yaml`
-files installed in `~/.spack`, hence preventing as much as possible the possible interference
-with user-specific spack configurations.
+files installed in `~/.spack`, thereby preventing interference with user-specific spack configurations as much as possible.
 
 You may use `spack.yaml` files to create a
 [Spack environment](https://spack.readthedocs.io/en/latest/environments.html) in
@@ -27,7 +27,8 @@ $ . spack/share/spack/setup-env.sh
 ```
 
 Remember that the second line needs to be executed every time you open a new
-terminal.
+terminal; it may be helpful to create an alias in your bashrc file as a
+shortcut.
 
 You will then need to clone `sds-repo`, which contains the Mochi packages.
 
@@ -54,7 +55,7 @@ Then, execute the following command
 $ spack env create myenv spack.yaml
 ```
 
-Change to a directory outside the `platform-configurations` folders
+Change to a directory outside of the `platform-configurations` folders
 and activate the environment as follows.
 
 ```
@@ -102,10 +103,13 @@ Should you want to contribute a `spack.yaml` for a particular machine,
 please submit a merge request with it, and ensure the following.
 
 *  The `spack.yaml` file should contain the compiler(s) that have been tested
-   to be working with Mochi packages.
+   and confirmed to work with Mochi packages.
 *  The `spack.yaml` file should try to list system-provided packages,
    in particular packages used for building (`cmake`, `autoconf`, etc.),
    and relevant system-provided MPI implementations.
+   - Note that this must be done manually.  Spack provides a `spack external
+     find` command that can be used to locate a subset of system packages,
+     but it does not populate the `spack.yaml` file.
 *  The `spack.yaml` file should contain the relevant variants for packages,
    in particular the transport methods to use with `libfabric`.
 *  The path to the `spack.yaml` file should be of the form
