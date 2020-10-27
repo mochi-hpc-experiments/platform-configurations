@@ -36,10 +36,9 @@ is `ofi+tcp`, using the `fabrics=tcp,rxm` variant in libfabric.
 Job management
 --------------
 
-JLSE uses the Cobalt workload manager.
-The provided `job.qsub` script is an example
-of job file. Please modify the header (lines starting with `#COBALT`)
-to set relevant parameters.
+JLSE uses the Cobalt workload manager.  The provided `job.qsub` script is an
+example of job file. Please modify the header (lines starting with
+`#COBALT`) to set relevant parameters.
 
 Once modified, the job script may be submitted as follows.
 

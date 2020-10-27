@@ -11,15 +11,18 @@ Using spack.yaml files
 ----------------------
 
 Each platform subdirectory in this repository provides a `spack.yaml` file.
-A `spack.yaml` file fully describes a Spack environment, including system-provided
-packages and compilers. It does so independently of any `compilers.yaml` or `packages.yaml`
-files installed in `~/.spack`, thereby preventing interference with user-specific spack configurations as much as possible.
+A `spack.yaml` file fully describes a Spack environment, including
+system-provided packages and compilers. It does so independently of any
+`compilers.yaml` or `packages.yaml` files installed in `~/.spack`, thereby
+preventing interference with user-specific spack configurations as much as
+possible.
 
 You may use `spack.yaml` files to create a
-[Spack environment](https://spack.readthedocs.io/en/latest/environments.html) in
-which Mochi packages will be installed.
+[Spack environment](https://spack.readthedocs.io/en/latest/environments.html)
+in which Mochi packages will be installed.
 
-If you don't have Spack installed on your platform, clone it and set it up as follows.
+If you don't have Spack installed on your platform, clone it and set it up
+as follows.
 
 ```
 $ git clone https://github.com/spack/spack.git
