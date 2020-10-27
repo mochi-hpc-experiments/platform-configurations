@@ -21,7 +21,7 @@ Networking
 Mercury should use the `verbs` transport method in Mercury, which
 translates to `ofi+verbs;ofi_rxm` internally.  You must also specify the
 libfabric domain when initializing Mercury by using `verbs://mlx5_0`
-as the local address. This will insure that libfabric
+as the local address. This will ensure that libfabric
 uses the correct default port on the network card.
 
 Libfabric should be compiled with the `+verbs` and `+rxm` variants.
