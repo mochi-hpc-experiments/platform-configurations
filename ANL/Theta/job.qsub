@@ -7,8 +7,9 @@
 
 set -eu
 
+# prevents interference between MPI and Mochi (libfabric) libraries
+# when sharing GNI resources
 export MPICH_GNI_NDREG_ENTRIES=1024
-export HDF5_USE_FILE_LOCKING=FALSE
 
 PDOMAIN=mypdomain
 
