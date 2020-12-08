@@ -25,6 +25,10 @@ as the local address. This will ensure that libfabric
 uses the correct default port on the network card.
 
 Libfabric should be compiled with the `+verbs` and `+rxm` variants.
+By adding `+tcp` in the list of fabrics, you will be able to use the `ofi+tcp`
+transport in Mercury as well. Note that the `spack.yaml` file in this folder
+does not add this variant by default.
+
 
 Job management
 --------------
