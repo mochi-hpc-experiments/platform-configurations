@@ -1,6 +1,7 @@
 spack:
   specs:
   - mochi-margo%gcc@9.1.0
+  - argobots@main%gcc@9.1.0 # avoid potential mutex performance problem arising from weak atomics. This can be removed once Argobots 1.1 is available
   concretization: together
   compilers:
   - compiler:
