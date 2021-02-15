@@ -1,7 +1,6 @@
 spack:
   specs:
   - mochi-margo%gcc@9.1.0
-  - mercury@master%gcc@9.1.0 # 2.0.0rc1 doesn't build; remove this line when 2.0.0 comes out
   concretization: together
   compilers:
   - compiler:
