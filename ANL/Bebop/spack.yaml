@@ -171,7 +171,7 @@ spack:
       - spec: m4@1.4.16 arch=linux-centos7-x86_64
         prefix: /usr
     mercury:
-      variants: ~boostsys
+      variants: ~boostsys ~checksum
       version: []
       target: []
       compiler: []

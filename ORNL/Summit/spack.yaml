@@ -84,7 +84,7 @@ spack:
       providers: {}
       compiler: []
     mercury:
-      variants: ~boostsys
+      variants: ~boostsys ~checksum
       buildable: true
       version: []
       target: []

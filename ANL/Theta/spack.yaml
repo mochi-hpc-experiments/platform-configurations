@@ -185,7 +185,7 @@ spack:
       - spec: m4@1.4.18
         prefix: /usr
     mercury:
-      variants: +udreg ~boostsys
+      variants: +udreg ~boostsys ~checksum
       version: []
       target: []
       compiler: []
