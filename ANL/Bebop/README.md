@@ -12,10 +12,6 @@ changes to your environment:
   - this will change the default compiler from Intel (icc) to GNU (gcc) and
     load a matching Intel MPI library.  We recommend compiling Mochi packages
     using gcc
-- `module load anaconda3`
-  - this will change the default Python interpreter from version 2.x to
-    version 3.x. Either one will work with Spack, but the former will emit
-    warnings due to missing features.
 
 Networking
 ----------
