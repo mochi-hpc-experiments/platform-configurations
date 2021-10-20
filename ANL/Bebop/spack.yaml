@@ -158,8 +158,9 @@ spack:
       compiler: []
       providers: {}
       externals:
-      - spec: libtool@2.4.2 arch=linux-centos7-x86_64
-        prefix: /usr
+      - spec: libtool@2.4.6 arch=linux-centos7-x86_64
+        modules:
+        - libtool/2.4.6-56f6g2w
     m4:
       buildable: false
       version: []
