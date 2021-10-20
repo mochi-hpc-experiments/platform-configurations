@@ -76,9 +76,9 @@ spack:
       compiler: []
       providers: {}
       externals:
-      - spec: cmake@3.18.4 arch=linux-centos7-x86_64
+      - spec: cmake@3.20.3 arch=linux-centos7-x86_64
         modules:
-        - cmake/3.18.4-fygx2f7
+        - cmake/3.20.3-vedypwm
     coreutils:
       buildable: false
       version: []
