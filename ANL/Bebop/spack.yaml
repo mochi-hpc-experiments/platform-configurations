@@ -141,9 +141,9 @@ spack:
       compiler: []
       providers: {}
       externals:
-      - spec: intel-mpi@2018.4.274 arch=linux-centos7-x86_64
+      - spec: intel-mpi@2019.8.254 arch=linux-centos7-x86_64
         modules:
-        - intel-mpi/2018.4.274-ozfo327
+        - intel-mpi/2019.8.254-hviu7j6
     libfabric:
       variants: fabrics=psm2,sockets
       version: []
