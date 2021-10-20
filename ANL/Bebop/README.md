@@ -5,18 +5,13 @@ Bebop
 Programming environment
 -----------------------
 
-The Bebop machine has many compilers and MPI implementations, not all
-of which work correctly with Mochi. We have found `gcc@8.2.0` with
-the `intel-mpi` package to be the most reliable way of working with
-Mochi on this platform. You can work with these packages by typping:
+Before using Spack to compile Mochi on Bebop, we recommend the following
+changes to your environment:
 
-```
-$ module load gcc/8.2.0-g7hppkz
-```
-
-This command will automatically change the compiler to `gcc@8.2.0`
-and change the `intel-mpi` package to the appropriate one.
-
+- `module load gcc`
+  - this will change the default compiler from Intel (icc) to GNU (gcc) and
+    load a matching Intel MPI library.  We recommend compiling Mochi packages
+    using gcc
 
 Networking
 ----------
