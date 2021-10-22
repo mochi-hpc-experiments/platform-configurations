@@ -44,7 +44,7 @@ Now clone the present repository and `cd` into the subdirectory relevant
 to your platform. For example:
 
 ```
-$ git clone https://xgitlab.cels.anl.gov/sds/experiments/platform-configurations.git
+$ git clone https://github.com/mochi-hpc-experiments/platform-configurations.git
 $ cd platform-configurations/ANL/Bebop
 ```
 
