@@ -33,11 +33,11 @@ Remember that the second line needs to be executed every time you open a new
 terminal; it may be helpful to create an alias in your bashrc file as a
 shortcut.
 
-You will then need to clone `sds-repo`, which contains the Mochi packages.
+You will then need to clone `mochi-spack-packages`, which contains the Mochi packages.
 
 ```
-$ git clone https://xgitlab.cels.anl.gov/sds/sds-repo.git
-$ spack repo add sds-repo
+$ git clone https://github.com/mochi-hpc/mochi-spack-packages.git
+$ spack repo add mochi-spack-packages
 ```
 
 Now clone the present repository and `cd` into the subdirectory relevant
@@ -48,7 +48,7 @@ $ git clone https://xgitlab.cels.anl.gov/sds/experiments/platform-configurations
 $ cd platform-configurations/ANL/Bebop
 ```
 
-Edit the path to `sds-repo` in the `repos` field of the `spack.yaml` file to
+Edit the path to `mochi-spack-packages` in the `repos` field of the `spack.yaml` file to
 match your installation.
 
 Then, execute the following command
