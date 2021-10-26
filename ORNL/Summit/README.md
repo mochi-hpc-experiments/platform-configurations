@@ -24,11 +24,15 @@ libfabric domain when initializing Mercury by using `verbs://mlx5_0`
 as the local address. This will ensure that libfabric
 uses the correct default port on the network card.
 
-Libfabric should be compiled with the `+verbs` and `+rxm` variants.
-By adding `+tcp` in the list of fabrics, you will be able to use the `ofi+tcp`
+Libfabric should be compiled with the `fabrics=verbs,rxm` variant.  You may
+also add `tcp` to the list of fabrics in order to be able to use the TCP
 transport in Mercury as well. Note that the `spack.yaml` file in this folder
 does not add this variant by default.
 
+Also note that the spack.yaml file is configured to use an external
+rdma-core package with libfabric. This is a crucial configuration detail.
+If rdma-core is compiled by Spack, it will conflict with the version
+used by Spectrum MPI and probably lack some Summit-specific optimizations.
 
 Job management
 --------------
@@ -44,3 +48,9 @@ Once modified, the job script may be submitted as follows.
 ```
 $ bsub ./job.lfs
 ```
+
+Job management tips
+--------------
+
+* To run the server/provider in one process and client in another, you must disable 'cgroups':  submit your job with `#BSUB -step_cgroup n`
+* If you want the server/provider to run on one node and client on another, request multiple nodes with 'bsub' and run with 'jsrun -n 1 -r 1 -g ALL_GPUS'.  You can background one jsrun to start the server and then run another jsrun to start the client
