@@ -27,6 +27,10 @@ spack:
       buildable: true
       version: []
       target: []
+    m4:
+      externals:
+      - spec: m4@1.4.18
+        prefix: /usr
     autoconf:
       externals:
       - spec: autoconf@2.69
