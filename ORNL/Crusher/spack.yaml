@@ -1,11 +1,9 @@
 spack:
   specs:
   - mochi-margo
-  - json-c@0.13.1
-  - mercury@2.2.0rc1
   concretization: together
   repos:
-  - /ccs/home/carns/working/src/mochi/mochi-spack-packages
+  - /path/to/mochi-spack-packages
   packages:
     libfabric:
       externals:
@@ -20,7 +18,13 @@ spack:
     mercury:
       variants: ~boostsys ~checksum
       buildable: true
-      version: []
+      version: [ 2.2.0rc1 ]
+      target: []
+      providers: {}
+      compiler: []
+    json-c:
+      buildable: true
+      version: [ 0.13.1 ]
       target: []
       providers: {}
       compiler: []
@@ -66,6 +70,15 @@ spack:
       providers: {}
       externals:
       - spec: libtool@2.4.6
+        prefix: /usr
+    m4:
+      buildable: false
+      version: []
+      target: []
+      compiler: []
+      providers: {}
+      externals:
+      - spec: m4@1.4.18
         prefix: /usr
   view: true
   compilers:
