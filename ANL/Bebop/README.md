@@ -12,12 +12,24 @@ changes to your environment:
   - this will change the default compiler from Intel (icc) to GNU (gcc) and
     load a matching Intel MPI library.  We recommend compiling Mochi packages
     using gcc
+- `module load intel-mpi`
+  - this will insure that the MPI module is reactivated after loading gcc
 
 Networking
 ----------
 
-Bebop uses an Intel Omnipath fabric. The corresponding transport in
-Mercury is `ofi+psm2`, using the `+psm2` variant in `libfabric`.
+Bebop uses an Intel Omnipath fabric. There are currently three options for
+how to use this fabric in Mochi. Until Mercury 2.2.0 is release and available
+in Spack, it is necessary to install mercury@master to gain access to all 
+three:
+
+- "ofi+psm2://", using the `+psm2` variant in `libfabric`
+  - this is the traditional psm2 provider in libfabric
+- "psm2://", using the `+psm2` variant in `mercury`
+  - this is the native psm2 na plugin in Mercury
+- "ofi+opx://", using the `+opx` variant in `libfabric`
+  - this is the newer, and more experimental, OmniPath Express provider
+    in libfabric
 
 The `PSM2_MULTI_EP` environment variable should be set to 1 in your job script
 to avoid conflict between MPI and Mercury when using the PSM2 network.
