@@ -18,18 +18,10 @@ changes to your environment:
 Networking
 ----------
 
-Bebop uses an Intel Omnipath fabric. There are currently three options for
-how to use this fabric in Mochi. Until Mercury 2.2.0 is release and available
-in Spack, it is necessary to install mercury@master to gain access to all 
-three:
-
-- "ofi+psm2://", using the `+psm2` variant in `libfabric`
-  - this is the traditional psm2 provider in libfabric
-- "psm2://", using the `+psm2` variant in `mercury`
-  - this is the native psm2 na plugin in Mercury
-- "ofi+opx://", using the `+opx` variant in `libfabric`
-  - this is the newer, and more experimental, OmniPath Express provider
-    in libfabric
+Bebop uses an Intel OmniPath fabric. We recommend using the "ofi+psm2"
+transport, which utilized the psm2 provider in libfabric for communication.
+An alternative is also available in the form of Mercury's own internal psm2
+abstraction that can be accessed via the "psm2+psm2" transport.
 
 The `PSM2_MULTI_EP` environment variable should be set to 1 in your job script
 to avoid conflict between MPI and Mercury when using the PSM2 network.

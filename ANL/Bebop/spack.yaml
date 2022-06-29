@@ -145,7 +145,7 @@ spack:
         modules:
         - intel-mpi/2019.8.254-hviu7j6
     libfabric:
-      variants: fabrics=psm2,opx,tcp,rxm
+      variants: fabrics=psm2,tcp,rxm
       version: []
       target: []
       compiler: []
