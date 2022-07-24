@@ -1,18 +1,16 @@
-Theta
-=====
+Cori
+====
 
 
 Programming environment
 -----------------------
 
-Cori has many compilers and MPI implementations. We found multiple version of gcc that
-work with Mochi, and the provided `spack.yaml` file uses the latest version
-(`gcc@9.3.0`) with the `cray-mpich` package. You can work with these packages
-by typping:
+Cori has many compilers and MPI implementations. We recommend using the
+default version of the GNU compilers and cray-mpich as described in the
+provided `spack.yaml` file.  The GNU compilers can be loaded as follows:
 
 ```
 $ module swap PrgEnv-intel PrgEnv-gnu
-$ module swap gcc8/.3.0 gcc/9.3.0
 ```
 
 You may also want to `export CRAYPE_LINK_TYPE=dynamic` (e.g. in your
