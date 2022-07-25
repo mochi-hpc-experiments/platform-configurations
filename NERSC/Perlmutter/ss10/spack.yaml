@@ -5,9 +5,8 @@
 spack:
   # add package specs to the `specs` list
   specs:
-  - mochi-margo
+  - mochi-margo ^libfabric@1.11.0.4.114
   view: true
-  concretization: together
   repos:
   - /path/to/mochi-spack-packages
   compilers:
@@ -24,20 +23,27 @@ spack:
       modules:
       - PrgEnv-gnu
       - gcc/11.2.0
+      - libfabric
       environment: {}
       extra_rpaths: []
   packages:
     all:
       providers:
-        mpi: [ mpich ]
-    mpich:
+        mpi: [ cray-mpich ]
+      compiler:
+      - gcc@11.2.0
+      target:
+      - zen3
+      version: []
+      buildable: true
+    cray-mpich:
       buildable: false
       version: []
       target: []
       compiler: []
       providers: {}
       externals:
-      - spec: mpich@8.1.15
+      - spec: cray-mpich@8.1.15 arch=cray-sles15-zen3
         modules:
         - cray-mpich/8.1.15
     mercury:
@@ -47,15 +53,15 @@ spack:
       target: []
       providers: {}
       compiler: []
-    libfabric: 
-      externals: 
+    libfabric:
+      externals:
       - spec: libfabric@1.11.0.4.114
-        modules: 
+        modules:
         - libfabric/1.11.0.4.114
-      buildable: true 
-      version: [] 
-      target: [] 
-      providers: {} 
+      buildable: true
+      version: []
+      target: []
+      providers: {}
       compiler: []
     autoconf:
       buildable: false
@@ -102,6 +108,15 @@ spack:
       providers: {}
       externals:
       - spec: json-c@0.13
+        prefix: /usr
+    openssl:
+      buildable: false
+      version: []
+      target: []
+      compiler: []
+      providers: {}
+      externals:
+      - spec: openssl@1.1.1d
         prefix: /usr
     m4:
       externals:
