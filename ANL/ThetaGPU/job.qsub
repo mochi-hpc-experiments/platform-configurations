@@ -1,0 +1,25 @@
+#!/bin/bash
+#COBALT -A radix-io
+#COBALT -n 2
+#COBALT -t 0:10:00
+#COBALT --mode script
+#COBALT -M carns@mcs.anl.gov
+#COBALT -q single-gpu
+#COBALT --attr filesystems=home
+
+set -eu
+
+# note: disable registration cache for verbs provider for now; see
+#       discussion in https://github.com/ofiwg/libfabric/issues/5244
+export FI_MR_CACHE_MAX_COUNT=0
+# use shared recv context in RXM; should improve scalability
+export FI_OFI_RXM_USE_SRX=1
+
+echo "Setting up spack"
+source $HOME/spack/share/spack/setup-env.sh
+echo "Activating env"
+spack env activate thetagpu-demo
+
+mpiexec -n 2 /home/carns/working/install-thetagpu/bin/margo-p2p-bw -x 8388608 -n "verbs://" -c 8 -D 20
+
+
