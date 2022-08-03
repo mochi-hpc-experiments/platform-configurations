@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -l
 #COBALT -A radix-io
 #COBALT -n 2
 #COBALT -t 0:10:00
@@ -15,11 +15,14 @@ export FI_MR_CACHE_MAX_COUNT=0
 # use shared recv context in RXM; should improve scalability
 export FI_OFI_RXM_USE_SRX=1
 
-echo "Setting up spack"
-source $HOME/spack/share/spack/setup-env.sh
+echo "Setting up spack:"
+source $HOME/working/src/spack/share/spack/setup-env.sh
 echo "Activating env"
 spack env activate thetagpu-demo
+spack find -vN
+echo "Checking default modules:"
+module list
 
-mpiexec -n 2 /home/carns/working/install-thetagpu/bin/margo-p2p-bw -x 8388608 -n "verbs://" -c 8 -D 20
+mpirun -hostfile ${COBALT_NODEFILE} -n 2 -N 1 /home/carns/working/install-thetagpu/bin/margo-p2p-bw -x 8388608 -n "verbs://" -c 8 -D 20
 
 
