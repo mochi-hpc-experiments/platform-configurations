@@ -6,6 +6,9 @@ notes about building and running Mochi-based codes on various platforms.
 Please refer to the subdirectory for your platform of interest for more
 information.
 
+The `generic` subdirectory contains a minimal Spack environment example that
+can be used as a starting point for systems for which there is no existing
+recipe.
 
 Using spack.yaml files
 ----------------------
