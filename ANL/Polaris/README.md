@@ -13,7 +13,9 @@ We recommend using the system-provided GNU compiler and libfabric library on
 Polaris specified in the provided spack.yaml file.
 
 The GNU compiler can also be loaded in your normal terminal environment
-(outside of Spack) by running `module swap PrgEnv-nvphc PrgEnv-gnu`.
+(outside of Spack) by running `module swap PrgEnv-nvphc PrgEnv-gnu`.  It may
+also be necessary to run `module load cudatoolkit-standalone` once the
+PrgEnv modules have been swapped.
 
 Networking
 ----------
@@ -39,7 +41,8 @@ transport by using the `ucx+all://` address specifier in place of
 `ofi+verbs://` at runtime when initializing Thallium, Margo, or Mercury.
 
 The UCX networking option is feature-complete but not as well tested as
-libfabric at this time.
+libfabric at this time.  See `job-ucx.qsub` for an example of how to run a
+job that uses the UCX transport.
 
 Job management
 --------------

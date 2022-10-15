@@ -1,0 +1,21 @@
+#!/bin/sh
+#PBS -l select=2
+#PBS -l place=scatter
+#PBS -l walltime=0:10:00
+#PBS -l filesystems=home
+#PBS -q debug
+#PBS -A CSC250STDM12
+
+set -eu
+
+# Change to working directory
+cd ${PBS_O_WORKDIR}
+
+echo "Setting up spack"
+source $HOME/working/src/spack/share/spack/setup-env.sh
+echo "Activating env"
+spack env activate polaris-ucx
+spack find -fN
+
+mpiexec -n 2 --ppn 1 /home/carns/working/install-polaris/bin/margo-p2p-bw -x 8388608 -n "ucx+all://" -c 8 -D 20
+

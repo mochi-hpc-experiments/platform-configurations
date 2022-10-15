@@ -2,6 +2,7 @@
 #PBS -l select=2
 #PBS -l place=scatter
 #PBS -l walltime=0:10:00
+#PBS -l filesystems=home
 #PBS -q debug
 #PBS -A CSC250STDM12
 
