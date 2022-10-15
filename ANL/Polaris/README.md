@@ -13,12 +13,14 @@ We recommend using the system-provided GNU compiler and libfabric library on
 Polaris specified in the provided spack.yaml file.
 
 The GNU compiler can also be loaded in your normal terminal environment
-(outside of Spack) by running `module swap PrgEnv-nvphc PrgEnv-gnu`.
+(outside of Spack) by running `module swap PrgEnv-nvphc PrgEnv-gnu`.  It may
+also be necessary to run `module load cudatoolkit-standalone` once the
+PrgEnv modules have been swapped.
 
 Networking
 ----------
 
-Polaris will use the `verbs://` transport in Mercury while it is equipped
+Polaris will use the `ofi+verbs://` transport in Mercury while it is equipped
 with a Slingshot 10 network.  The default environment includes a libfabric
 package that is already properly configured to use it.
 
@@ -28,6 +30,19 @@ problematic in some libfabric releases.
 
 The `FI_OFI_RXM_USE_SRX` envrionment variable should be set to 1 to enable
 shared receive contexts; this is expected to improve scalability.
+
+Alternative networking: UCX
+---------------------------
+
+The `spack-ucx.yaml` file specifies an alternative Spack environment
+configuration in which the Mochi stack is built with support for both
+libfabric _and_ UCX network transports.  You can activate the UCX/verbs
+transport by using the `ucx+all://` address specifier in place of
+`ofi+verbs://` at runtime when initializing Thallium, Margo, or Mercury.
+
+The UCX networking option is feature-complete but not as well tested as
+libfabric at this time.  See `job-ucx.qsub` for an example of how to run a
+job that uses the UCX transport.
 
 Job management
 --------------
