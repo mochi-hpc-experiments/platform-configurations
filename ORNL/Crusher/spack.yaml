@@ -25,7 +25,7 @@ spack:
     mercury:
       variants: ~boostsys ~checksum
       buildable: true
-      version: [ 2.2.0rc1 ]
+      version: []
       target: []
       providers: {}
       compiler: []
@@ -38,7 +38,7 @@ spack:
       externals:
       - spec: json-c@0.13
         prefix: /usr
-    creay-mpich:
+    cray-mpich:
       buildable: false
       externals:
       - spec: cray-mpich@8.1.17
