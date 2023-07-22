@@ -63,6 +63,7 @@ spack:
       - spec: libfabric@1.11.0.4.125
         modules:
         - libfabric/1.11.0.4.125
+      variants: fabrics=verbs,rxm +cuda
       buildable: true
       version: []
       target: []
@@ -118,13 +119,6 @@ spack:
       externals:
       - spec: m4@1.4.18
         prefix: /usr
-    libfabric:
-      variants: fabrics=verbs,rxm +cuda
-      version: []
-      target: []
-      compiler: []
-      buildable: true
-      providers: {}
     rdma-core:
       externals:
       - spec: rdma-core@20
