@@ -58,16 +58,6 @@ spack:
       target: []
       providers: {}
       compiler: []
-    libfabric:
-      externals:
-      - spec: libfabric@1.11.0.4.125
-        modules:
-        - libfabric/1.11.0.4.125
-      buildable: true
-      version: []
-      target: []
-      providers: {}
-      compiler: []
     autoconf:
       buildable: false
       version: []
