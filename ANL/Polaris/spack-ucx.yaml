@@ -7,8 +7,6 @@ spack:
   specs:
   - mochi-margo ^mercury+ucx ^libfabric@1.11.0.4.125
   view: true
-  repos:
-  - /path/to/mochi-spack-packages
   modules:
     prefix_inspections:
       lib: [LD_LIBRARY_PATH]
