@@ -40,7 +40,6 @@ You will then need to clone `mochi-spack-packages`, which contains the Mochi pac
 
 ```
 $ git clone https://github.com/mochi-hpc/mochi-spack-packages.git
-$ spack repo add mochi-spack-packages
 ```
 
 Now clone the present repository and `cd` into the subdirectory relevant
@@ -51,22 +50,17 @@ $ git clone https://github.com/mochi-hpc-experiments/platform-configurations.git
 $ cd platform-configurations/ANL/Bebop
 ```
 
-Edit the path to `mochi-spack-packages` in the `repos` field of the `spack.yaml` file to
-match your installation.
-
-Then, execute the following command
+Then, execute the following commands
 (changing _myenv_ into an appropriate name for your environment).
 
 ```
 $ spack env create myenv spack.yaml
+$ spack env activate myenv
+$ spack repo add /where/you/cloned/mochi-spack-packages
 ```
 
 Change to a directory outside of the `platform-configurations` folders
 and activate the environment as follows.
-
-```
-$ spack env activate myenv
-```
 
 You may now add specs to your environment. For instance if you want
 to install Margo, execute the following command.
