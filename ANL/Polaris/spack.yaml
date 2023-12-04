@@ -5,7 +5,7 @@
 spack:
   # add package specs to the `specs` list
   specs:
-  - mochi-margo ^libfabric@1.17.0
+  - mochi-margo^json-c@0.13.0
   view: true
   modules:
     prefix_inspections:
@@ -13,7 +13,7 @@ spack:
       lib64: [LD_LIBRARY_PATH]
   compilers:
   - compiler:
-      spec: gcc@11.2.0
+      spec: gcc@12.2.0
       paths:
         cc: cc
         cxx: CC
@@ -24,8 +24,7 @@ spack:
       target: any
       modules:
       - PrgEnv-gnu
-      - gcc/11.2.0
-      - libfabric
+      - gcc/12.2.0
       - cudatoolkit-standalone
       environment: {}
       extra_rpaths: []
@@ -34,18 +33,24 @@ spack:
       providers:
         mpi: [ cray-mpich ]
       compiler:
-      - gcc@11.2.0
+      - gcc@12.2.0
       target:
       - zen3
     cray-mpich:
       buildable: false
       externals:
-      - spec: cray-mpich@8.1.16
+      - spec: cray-mpich@8.1.25
         modules:
-        - cray-mpich/8.1.16
+        - cray-mpich/8.1.25
     mercury:
       buildable: true
       variants: ~boostsys ~checksum
+    libfabric:
+      buildable: false
+      externals:
+      - spec: libfabric@1.15.2.0
+        modules:
+        - libfabric/1.15.2.0
     autoconf:
       buildable: false
       externals:
@@ -55,6 +60,11 @@ spack:
       buildable: false
       externals:
       - spec: automake@1.15.1
+        prefix: /usr
+    gmake:
+      buildable: false
+      externals:
+      - spec: gmake@4.2.1
         prefix: /usr
     cmake:
       buildable: false
@@ -76,15 +86,3 @@ spack:
       externals:
       - spec: m4@1.4.18
         prefix: /usr
-    libfabric:
-      buildable: true
-      variants: fabrics=verbs,rxm +cuda
-    rdma-core:
-      externals:
-      - spec: rdma-core@20
-        prefix: /usr
-    cuda:
-      externals:
-      - spec: cuda@11.8.0
-        modules:
-        - cudatoolkit-standalone/11.8.0
