@@ -1,0 +1,42 @@
+#!/bin/bash
+#PBS -l select=2:system=sunspot,place=scatter
+#PBS -A CSC250STDM12_CNDA
+#PBS -l walltime=00:15:00
+#PBS -N mochi-demo
+#PBS -k doe
+  
+export TZ='/usr/share/zoneinfo/US/Central'
+
+cd $PBS_O_WORKDIR
+
+echo Jobid: $PBS_JOBID
+echo Running on host `hostname`
+echo Running on nodes `cat $PBS_NODEFILE`
+
+echo "Setting up spack"
+source $HOME/working/src/spack/share/spack/setup-env.sh
+echo "Activating env"
+spack env activate sunspot-demo
+spack find -fN
+
+NNODES=`wc -l < $PBS_NODEFILE`
+NRANKS=1          # Number of MPI ranks per node
+NDEPTH=104        # Number of hardware threads per rank, spacing between MPI ranks on a node
+
+NTOTRANKS=$(( NNODES * NRANKS ))
+
+echo "NUM_NODES=${NNODES}  TOTAL_RANKS=${NTOTRANKS}  RANKS_PER_NODE=${NRANKS}"
+
+# possibly useful environment variables; more testing is needed
+
+# export FI_CXI_OPTIMIZED_MRS=0
+# export FI_CXI_RX_MATCH_MODE=hybrid
+# export FI_MR_CACHE_MONITOR=memhooks
+# export FI_CXI_REQ_BUF_MIN_POSTED=8
+# export FI_CXI_REQ_BUF_SIZE=8388608
+# export FI_CXI_DEFAULT_CQ_SIZE=131072
+# export FI_CXI_OFLOW_BUF_SIZE=8388608
+
+mpiexec -np ${NTOTRANKS} -ppn ${NRANKS} -d ${NDEPTH} --cpu-bind depth -envall /home/carns/working/install-sunspot/bin/margo-p2p-bw -x 8388608 -n "cxi://" -c 8 -D 20
+
+
