@@ -5,7 +5,7 @@
 spack:
   # add package specs to the `specs` list
   specs:
-  - mochi-margo ^libfabric@1.11.0.4.114
+  - mochi-margo
   view: true
   compilers:
   - compiler:
@@ -21,8 +21,11 @@ spack:
       modules:
       - PrgEnv-gnu
       - gcc/11.2.0
-      - libfabric
-      environment: {}
+      - cudatoolkit
+      - xpmem
+      environment:
+        prepend_path:
+          PKG_CONFIG_PATH: /opt/cray/xpmem/default/lib64/pkgconfig/:/usr/lib64/pkgconfig
       extra_rpaths: []
   modules:
     prefix_inspections:
@@ -31,7 +34,7 @@ spack:
   packages:
     all:
       providers:
-        mpi: [ cray-mpich ]
+        mpi: [cray-mpich]
       compiler:
       - gcc@11.2.0
       target:
@@ -40,18 +43,18 @@ spack:
     cray-mpich:
       buildable: false
       externals:
-      - spec: cray-mpich@8.1.15 arch=cray-sles15-zen3
+      - spec: cray-mpich@8.1.25 arch=cray-sles15-zen3
         modules:
-        - cray-mpich/8.1.15
+        - cray-mpich/8.1.25
     mercury:
       buildable: true
       variants: ~boostsys ~checksum
     libfabric:
+      buildable: false
       externals:
-      - spec: libfabric@1.11.0.4.114
+      - spec: libfabric@1.15.2.0
         modules:
-        - libfabric/1.11.0.4.114
-      buildable: true
+        - libfabric/1.15.2.0
     autoconf:
       buildable: false
       externals:
@@ -84,6 +87,12 @@ spack:
       - spec: openssl@1.1.1d
         prefix: /usr
     m4:
+      buildable: false
       externals:
       - spec: m4@1.4.18
+        prefix: /usr
+    gmake:
+      buildable: false
+      externals:
+      - spec: gmake@4.2.1
         prefix: /usr
