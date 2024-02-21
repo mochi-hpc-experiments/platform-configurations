@@ -80,4 +80,9 @@ spack:
       externals:
       - spec: m4@1.4.18
         prefix: /usr
+    zlib:
+      buildable: false
+      externals:
+      - spec: zlib@1.2.11
+        prefix: /usr
   view: true
