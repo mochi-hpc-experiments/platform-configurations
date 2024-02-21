@@ -173,9 +173,7 @@ spack:
     cmake:
       externals:
       - spec: cmake@3.26.4
-        modules:
-        - spack-pe-gcc/0.5-rc2
-        - cmake/3.26.4-gcc-testing
+        prefix: /soft/packaging/spack/gcc/0.5-rc1/install/linux-sles15-x86_64/gcc-11.4.0/cmake-3.26.4-jiwocshcdaghfyjb6jzyhj7zyorgkfkh
     perl:
       externals:
       - spec: perl@5.26.1
