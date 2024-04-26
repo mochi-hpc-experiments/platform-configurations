@@ -9,7 +9,7 @@ We recommend using the system-provided GNU compiler as specified in the
 example spack configurations.  The GNU compiler can also be loaded in
 your normal terminal environment (outside of Spack) by running `module
 swap PrgEnv-nvhpc PrgEnv-gnu`.  You should also run `module
-load cudatoolkit-standalone` to gain access to CUDA libraries that may be
+load nvhpc-mixed` to gain access to CUDA libraries that may be
 required for executables built within this Spack environment.
 
 Networking
