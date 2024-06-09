@@ -4,201 +4,175 @@
 # configuration settings.
 spack:
   # add package specs to the `specs` list
-  specs: []
+  specs:
+  - mochi-margo^json-c@0.13.0
   view: true
-  concretizer:
-    unify: true
+  modules:
+    prefix_inspections:
+      lib: [LD_LIBRARY_PATH]
+      lib64: [LD_LIBRARY_PATH]
   compilers:
   - compiler:
-      spec: dpcpp@=2023.2.0
+      spec: oneapi@=24.086.0
       paths:
-        cc: /soft/compilers/oneapi/2023.10.15.001/oneapi/compiler/2023.2.0/linux/bin/icx
-        cxx: /soft/compilers/oneapi/2023.10.15.001/oneapi/compiler/2023.2.0/linux/bin/dpcpp
-        f77: /soft/compilers/oneapi/2023.10.15.001/oneapi/compiler/2023.2.0/linux/bin/ifx
-        fc: /soft/compilers/oneapi/2023.10.15.001/oneapi/compiler/2023.2.0/linux/bin/ifx
+        cc: /opt/aurora/24.086.0/oneapi/compiler/2024.1/bin/icx
+        cxx: /opt/aurora/24.086.0/oneapi/compiler/2024.1/bin/icpx
+        f77: /opt/aurora/24.086.0/oneapi/compiler/2024.1/bin/ifx
+        fc: /opt/aurora/24.086.0/oneapi/compiler/2024.1/bin/ifx
       flags: {}
       operating_system: sles15
       target: x86_64
-      modules: []
-      environment: {}
-      extra_rpaths: []
-  - compiler:
-      spec: gcc@=7.5.0
-      paths:
-        cc: /usr/bin/gcc
-        cxx: /usr/bin/g++
-        f77: null
-        fc: null
-      flags: {}
-      operating_system: sles15
-      target: x86_64
-      modules: []
-      environment: {}
-      extra_rpaths: []
-  - compiler:
-      spec: intel@=2021.10.0
-      paths:
-        cc: /soft/compilers/oneapi/2023.10.15.001/oneapi/compiler/2023.2.0/linux/bin/intel64/icc
-        cxx: /soft/compilers/oneapi/2023.10.15.001/oneapi/compiler/2023.2.0/linux/bin/intel64/icpc
-        f77: /soft/compilers/oneapi/2023.10.15.001/oneapi/compiler/2023.2.0/linux/bin/intel64/ifort
-        fc: /soft/compilers/oneapi/2023.10.15.001/oneapi/compiler/2023.2.0/linux/bin/intel64/ifort
-      flags: {}
-      operating_system: sles15
-      target: x86_64
-      modules: []
-      environment: {}
-      extra_rpaths: []
-  - compiler:
-      spec: oneapi@=2023.2.0
-      paths:
-        cc: /soft/compilers/oneapi/2023.10.15.001/oneapi/compiler/2023.2.0/linux/bin/icx
-        cxx: /soft/compilers/oneapi/2023.10.15.001/oneapi/compiler/2023.2.0/linux/bin/icpx
-        f77: /soft/compilers/oneapi/2023.10.15.001/oneapi/compiler/2023.2.0/linux/bin/ifx
-        fc: /soft/compilers/oneapi/2023.10.15.001/oneapi/compiler/2023.2.0/linux/bin/ifx
-      flags: {}
-      operating_system: sles15
-      target: x86_64
-      modules: [oneapi/release/2023.10.15.001]
-      environment: {}
-      extra_rpaths: []
-  - compiler:
-      spec: cce@=15.0.1
-      paths:
-        cc: /opt/cray/pe/cce/15.0.1/bin/craycc
-        cxx: /opt/cray/pe/cce/15.0.1/bin/craycxx
-        f77: null
-        fc: /opt/cray/pe/cce/15.0.1/bin/crayftn
-      flags: {}
-      operating_system: sles15sp4
-      target: x86_64
-      modules: []
-      environment: {}
-      extra_rpaths: []
+      modules: 
+      - oneapi/release/2024.1
   - compiler:
       spec: gcc@=12.2.0
       paths:
-        cc: /opt/cray/pe/gcc/12.2.0/gcc
-        cxx: /opt/cray/pe/gcc/12.2.0/g++
-        f77: null
-        fc: /opt/cray/pe/gcc/12.2.0/gfortran
+        cc: /opt/aurora/24.086.0/spack/gcc/0.7.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-jf4ov3v3scg7dvd76qhsuugl3jp42gfn/bin/gcc
+        cxx: /opt/aurora/24.086.0/spack/gcc/0.7.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-jf4ov3v3scg7dvd76qhsuugl3jp42gfn/bin/g++
+        f77: /opt/aurora/24.086.0/spack/gcc/0.7.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-jf4ov3v3scg7dvd76qhsuugl3jp42gfn/bin/gfortran
+        fc: /opt/aurora/24.086.0/spack/gcc/0.7.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-jf4ov3v3scg7dvd76qhsuugl3jp42gfn/bin/gfortran
       flags: {}
-      operating_system: sles15sp4
-      target: x86_64
-      modules: []
-      environment: {}
-      extra_rpaths: []
-  - compiler:
-      spec: gcc@=7.5.0
-      paths:
-        cc: /usr/bin/gcc
-        cxx: /usr/bin/g++
-        f77: null
-        fc: /usr/bin/gfortran
-      flags: {}
-      operating_system: sles15sp4
+      operating_system: sles15
       target: x86_64
       modules: []
       environment: {}
       extra_rpaths: []
   packages:
-    binutils:
-      externals:
-      - spec: binutils@2.39.0
-        prefix: /usr
-    coreutils:
-      externals:
-      - spec: coreutils@8.32
-        prefix: /usr
-    diffutils:
-      externals:
-      - spec: diffutils@3.6
-        prefix: /usr
-    findutils:
-      externals:
-      - spec: findutils@4.8.0
-        prefix: /usr
-    gawk:
-      externals:
-      - spec: gawk@4.2.1
-        prefix: /usr
-    openssh:
-      externals:
-      - spec: openssh@8.4p1
-        prefix: /usr
-    openssl:
-      externals:
-      - spec: openssl@1.1.1l
-        prefix: /usr
-    tar:
-      externals:
-      - spec: tar@1.34
-        prefix: /usr
-    autoconf:
-      externals:
-      - spec: autoconf@2.69
-        prefix: /usr
-    automake:
-      externals:
-      - spec: automake@1.15.1
-        prefix: /usr
-    curl:
-      externals:
-      - spec: curl@7.79.1+gssapi+ldap+nghttp2
-        prefix: /usr
-    git:
-      externals:
-      - spec: git@2.35.3~tcltk
-        prefix: /usr
-    gmake:
-      externals:
-      - spec: gmake@4.2.1
-        prefix: /usr
-    groff:
-      externals:
-      - spec: groff@1.22.4
-        prefix: /usr
-    libtool:
-      externals:
-      - spec: libtool@2.4.6
-        prefix: /usr
-    m4:
-      externals:
-      - spec: m4@1.4.18
-        prefix: /usr
-    pkg-config:
-      externals:
-      - spec: pkg-config@0.29.2
-        prefix: /usr
-# things `spack external find` didn't find
-    cmake:
-      externals:
-      - spec: cmake@3.26.4
-        modules:
-        - spack-pe-gcc/0.5-rc2
-        - cmake/3.26.4-gcc-testing
-    perl:
-      externals:
-      - spec: perl@5.26.1
-        prefix: /usr
+    all:
+      providers:
+        mpi: [mpich]
+      target:
+      - x86_64
+      buildable: true
     mpich:
       externals:
-      - spec: mpich@51.2
+      - spec: mpich@20231026 %oneapi@2024.1.0.20240308
+        prefix: /opt/aurora/24.086.0/CNDA/mpich/20231026/mpich-ofi-all-icc-default-pmix-gpu-drop20231026/
         modules:
-        - mpich/51.2
-        - intel_compute_runtime/release
-    boost:
+        - mpich/icc-all-pmix-gpu/20231026
+        - intel_compute_runtime/release/803.29
+        - oneapi/release/2024.1
       buildable: false
-      externals:
-      - spec: boost@1.66
-        prefix: /usr
+# NOTE: the +hwloc variant for Mercury configures it to be able to
+# automatically select NICs based on hardware topology
     mercury:
       buildable: true
       variants: ~boostsys ~checksum +hwloc
+# NOTE: mochi-ssg@main is needed as of August 30, 2023 in order to pick up a
+# workaround for faulty pmix library dependencies on Sunspot.  We can return to # official releases when the next version > 0.5.3 is available
     mochi-ssg:
       buildable: true
       version: [main]
     libfabric:
+      buildable: false
       externals:
       - spec: libfabric@1.15.2.0
         modules:
         - libfabric/1.15.2.0
+    autoconf:
+      buildable: false
+      externals:
+      - spec: autoconf@2.69
+        prefix: /usr
+    automake:
+      buildable: false
+      externals:
+      - spec: automake@1.15.1
+        prefix: /usr
+    libtool:
+      buildable: false
+      externals:
+      - spec: libtool@2.4.6
+        prefix: /usr
+    openssl:
+      buildable: false
+      externals:
+      - spec: openssl@1.1.1d
+        prefix: /usr
+    m4:
+      buildable: false
+      externals:
+      - spec: m4@1.4.18
+        prefix: /usr
+    cmake:
+      buildable: false
+      externals:
+      - spec: cmake@3.27.7
+        modules:
+        - cmake/3.27.7
+    findutils:
+      buildable: false
+      externals: 
+      - spec: findutils@4.8.0
+        prefix: /usr
+    perl:
+      buildable: false
+      externals:
+      - spec: perl@5.26.1~cpanm+opcode+open+shared+threads
+        prefix: /usr
+    gmake:
+      buildable: false
+      externals:
+      - spec: gmake@4.2.1
+        prefix: /usr
+    gawk:
+      buildable: false
+      externals:
+      - spec: gawk@4.2.1
+        prefix: /usr
+    python:
+      buildable: false
+      externals:
+      - spec: python@3.9.18
+        modules:
+        - frameworks/2024.1
+    groff:
+      buildable: false
+      externals:
+      - spec: groff@1.22.4
+        prefix: /usr
+    curl:
+      buildable: false
+      externals:
+      - spec: curl@7.79.1+gssapi+ldap+nghttp2
+        prefix: /usr
+    openssh:
+      buildable: false
+      externals:
+      - spec: openssh@8.4p1
+        prefix: /usr
+    gettext:
+      buildable: false
+      externals:
+      - spec: gettext@0.20.2
+        prefix: /usr
+    pkg-config:
+      buildable: false
+      externals:
+      - spec: pkg-config@0.29.2
+        prefix: /usr
+    sed:
+      buildable: false
+      externals:
+      - spec: sed@4.4
+        prefix: /usr
+    tar:
+      buildable: false
+      externals:
+      - spec: tar@1.34
+        prefix: /usr
+    binutils:
+      buildable: false
+      externals:
+      - spec: binutils@2.39.0
+        prefix: /usr
+    coreutils:
+      buildable: false
+      externals:
+      - spec: coreutils@8.32
+        prefix: /usr
+    ncurses:
+      buildable: false
+      externals:
+      - spec: ncurses@6.1
+        prefix: /usr
