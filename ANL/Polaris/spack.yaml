@@ -38,11 +38,11 @@ spack:
       extra_rpaths: []
   packages:
     all:
-      requires:
+      require:
       - "%gcc@12.3"
       - "target=zen3"
     mpi:
-      requires:
+      require:
       - cray-mpich
     pkgconfig:
       requires:
