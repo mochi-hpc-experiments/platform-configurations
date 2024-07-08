@@ -45,7 +45,7 @@ spack:
       require:
       - cray-mpich
     pkgconfig:
-      requires:
+      require:
       - pkg-config
     cray-mpich:
       buildable: false
