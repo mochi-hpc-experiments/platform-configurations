@@ -44,6 +44,9 @@ spack:
     mpi:
       require:
       - cray-mpich
+    json-c:
+      require:
+      - "@0.13.0"
     pkgconfig:
       require:
       - pkg-config
