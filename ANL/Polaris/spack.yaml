@@ -5,16 +5,16 @@
 spack:
   # add package specs to the `specs` list
   specs:
-  - mochi-margo^json-c@0.13.0
+  - mochi-margo
   view: true
   modules:
     prefix_inspections:
       lib: [LD_LIBRARY_PATH]
       lib64: [LD_LIBRARY_PATH]
-#  mirrors:
-#    mochi-buildcache:
-#      url: oci://ghcr.io/mochi-hpc/mochi-spack-buildcache
-#      signed: false
+  mirrors:
+    mochi-buildcache:
+      url: oci://ghcr.io/mochi-hpc/mochi-spack-buildcache
+      signed: false
   config:
     install_tree:
       padded_length: 128
@@ -38,13 +38,18 @@ spack:
       extra_rpaths: []
   packages:
     all:
-      providers:
-        mpi: [ cray-mpich ]
-        pkgconfig: [ pkg-config ]
-      compiler:
-      - gcc@12.3
-      target:
-      - zen3
+      require:
+      - "%gcc@12.3"
+      - "target=zen3"
+    mpi:
+      require:
+      - cray-mpich
+    json-c:
+      require:
+      - "@0.13.0"
+    pkgconfig:
+      require:
+      - pkg-config
     cray-mpich:
       buildable: false
       externals:
