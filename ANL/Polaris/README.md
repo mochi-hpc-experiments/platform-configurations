@@ -39,17 +39,15 @@ $ qsub ./job.qsub
 
 Notes
 -----
-As of this writing (2023-12-4) it is best to use json-c 0.13 with Mochi in
+As of this writing (2024-07-09) it is best to use json-c 0.13 with Mochi in
 order to ensure link time compatibility with the system json-c used by the
-system libfabric and cray-mpich on Polaris. However, the json-c-devel
-package is not installed on Polaris at this time, and 0.13 is not available
-in upstream Spack, so this is a difficult combination to use for Mochi.
+system libfabric and cray-mpich on Polaris.  This spack.yaml example uses a
+`require:` directective to enforce this constraint.  Note that json-c 0.13 is
+not available upstream in spack; it is provided as part of the
+mochi-spack-packages repository.
 
-As a workaround, the mochi-spack-packages repo adds an additional json-c
-version (labeled 0.13.0 to disambiguate from 0.13.1 which is already in
-Spack).  We also add a dependency in the root spec in the spack.yaml to
-ensure that this version is used on Polaris.
-
-These instructions and environment examples will be updated if/when a
-matching json-c-devel package is installed on Polaris in the system
-environment.
+These instructions and environment examples will be updated if a matching
+json-c-devel package is installed on Polaris (in which case we can use it as an
+external package) or the system-provided libfabric package is built against a
+newer version of json-c (in which case Mochi will be able to use a newer json-c
+as well).
