@@ -17,7 +17,7 @@ echo "Activating env"
 spack env activate polaris-demo
 spack find -fN
 
-# IMPORANT NOTE: the --cpu-bind depth option to mpiexec is crucial if you
+# IMPORANT NOTE: the --cpu-bind none option to mpiexec is crucial if you
 # intend to run Mochi processes that will use additional threads or
 # execution streams.  The default CPU binding on Polaris will limit each
 # process launched with mpiexec to a single CPU core that will starve any
