@@ -5,9 +5,9 @@ Perlmutter
 Programming environment
 -----------------------
 
-The example provided in this repository uses the gcc 11.2 compiler.  It
-should be loaded by default; look for `PrgEnv-gnu` and `gcc/11.2.0` in the
-output of `module list` to confirm.
+The example provided in this repository uses the gcc 12.3 compiler.  It
+should be loaded by default; look for `PrgEnv-gnu` and `gcc-native/12.3.0`
+in the output of `module list` to confirm.
 
 Networking
 ----------

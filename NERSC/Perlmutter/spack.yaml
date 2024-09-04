@@ -9,7 +9,7 @@ spack:
   view: true
   compilers:
   - compiler:
-      spec: gcc@11.2.0
+      spec: gcc@12.3
       paths:
         cc: cc
         cxx: CC
@@ -20,7 +20,7 @@ spack:
       target: any
       modules:
       - PrgEnv-gnu
-      - gcc/11.2.0
+      - gcc-native/12.3
       - cudatoolkit
       - xpmem
       environment:
@@ -33,19 +33,21 @@ spack:
       lib64: [LD_LIBRARY_PATH]
   packages:
     all:
-      providers:
-        mpi: [cray-mpich]
-      compiler:
-      - gcc@11.2.0
-      target:
-      - zen3
-      buildable: true
+      require:
+      - "%gcc@12.3"
+      - "target=zen3"
+    mpi:
+      require:
+      - cray-mpich
+    pkgconfig:
+      require:
+      - pkg-config
     cray-mpich:
       buildable: false
       externals:
-      - spec: cray-mpich@8.1.25 arch=cray-sles15-zen3
+      - spec: cray-mpich@8.1.28
         modules:
-        - cray-mpich/8.1.25
+        - cray-mpich/8.1.28
     mercury:
       buildable: true
       variants: ~boostsys ~checksum
@@ -95,4 +97,9 @@ spack:
       buildable: false
       externals:
       - spec: gmake@4.2.1
+        prefix: /usr
+    pkg-config:
+      buildable: false
+      externals:
+      - spec: pkg-config@0.29.2
         prefix: /usr
