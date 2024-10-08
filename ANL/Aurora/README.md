@@ -5,7 +5,7 @@ Sunspot
 Programming environment
 -----------------------
 
-This documentation is for the Aurora system at the ALCF as of December 2023.
+This documentation is for the Aurora system at the ALCF as of October 2024.
 We anticipate that the system environment will still change through the
 friendly early access program.
 
