@@ -132,8 +132,6 @@ spack:
       externals:
       - spec: automake@1.16.1
         prefix: /usr
-    mercury:
-      variants: ~boostsys ~checksum ~ofi +ucx +hwloc
     all:
       require:
       - '%gcc@13.2'
@@ -144,6 +142,9 @@ spack:
     pkgconfig:
       require:
       - pkgconf
+    mercury:
+      require:
+      - "~boostsys ~checksum +ofi ~ucx +hwloc"
     mpich:
       buildable: false
       externals:
@@ -155,3 +156,11 @@ spack:
       externals:
       - spec: ucx@1.14.0
         prefix: /
+    rdma-core:
+      buildable: false
+      externals:
+      - spec: rdma-core@52.0
+        prefix: /usr
+    libfabric:
+      require:
+      - "fabrics=rxm,verbs"
