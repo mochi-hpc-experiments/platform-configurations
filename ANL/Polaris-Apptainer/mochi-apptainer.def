@@ -1,0 +1,61 @@
+Bootstrap: docker
+From: ubuntu
+
+%environment
+    export SPACK_ROOT=/spack
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/spack/var/spack/environments/mochi/.spack-env/view/lib
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/spack/var/spack/environments/mochi/.spack-env/view/lib64
+    export PATH=$PATH:/spack/var/spack/environments/mochi/.spack-env/view/bin
+
+%post
+    # install commonly used distribution packages
+    apt-get update --fix-missing && apt-get install -y \
+    build-essential gfortran wget \
+    python3 python3-pip gcc git \
+    ca-certificates coreutils curl\
+    unzip zip bzip2 xz-utils \
+    python3-setuptools \
+    automake cmake libtool pkgconf autoconf \
+    bison fuse sudo vim \
+    apt-utils net-tools iptables iputils-ping iproute2 \
+    libssl-dev time
+
+    # install latest development version of Spack
+    git clone -b develop -c feature.manyFiles=true --depth 1 https://github.com/spack/spack.git /spack \
+    && cd \
+    && . /spack/share/spack/setup-env.sh \
+    && spack bootstrap now \
+
+    # clone external package repository for Mochi
+    git clone  https://github.com/mochi-hpc/mochi-spack-packages.git   /usr/mochi-spack-packages
+
+    # set up buildcache and install Mochi environment
+    cd \
+    && . /spack/share/spack/setup-env.sh \
+    && spack mirror add --unsigned mochi-buildcache oci://ghcr.io/mochi-hpc/mochi-spack-buildcache \
+    && spack repo add /usr/mochi-spack-packages \
+    && spack external find \
+    && spack env create mochi \
+    && spack env activate mochi \
+
+#   example of installing top-level Mofka service
+#   spack add mofka@main+python+mpi ^mochi-bedrock~ssg ^mpich@3.4 ^mercury~boostsys~checksum ^libfabric@1.19.1 ^json-c@0.13.0 %gcc@13 \
+
+#   example installing most basic Margo package
+    spack add mochi-margo ^mercury~boostsys~checksum ^libfabric@1.19.1 ^json-c@0.13.0 %gcc@13
+
+    # install
+    time spack concretize -f --fresh
+    time spack env depfile -o Makefile.env
+    time make -j 64 -f Makefile.env
+    # time spack install --fail-fast --no-check-signature -j64 \
+
+    ldconfig
+
+%test
+    # which bedrock
+    which margo-info
+    margo-info
+
+%help
+    This is a demo container for Mochi.
