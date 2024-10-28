@@ -1,11 +1,12 @@
 #!/bin/bash
 #PBS -l select=2
 #PBS -A CSC250STDM12_CNDA
-#PBS -l walltime=00:15:00
+#PBS -l walltime=00:10:00
 #PBS -N mochi-demo
 #PBS -k doe
+#PBS -m abe
 #PBS -l filesystems=flare 
-#PBS -q lustre_scaling 
+#PBS -q debug
 
 export TZ='/usr/share/zoneinfo/US/Central'
 
@@ -18,7 +19,7 @@ echo Running on nodes `cat $PBS_NODEFILE`
 echo "Setting up spack"
 source $HOME/working/src/spack/share/spack/setup-env.sh
 echo "Activating env"
-spack env activate sunspot-demo
+spack env activate aurora-demo
 spack find -fN
 
 NNODES=`wc -l < $PBS_NODEFILE`
@@ -40,6 +41,6 @@ echo "NUM_NODES=${NNODES}  TOTAL_RANKS=${NTOTRANKS}  RANKS_PER_NODE=${NRANKS}"
 # export FI_CXI_OFLOW_BUF_SIZE=8388608
 # export FI_CXI_CQ_FILL_PERCENT=20 
 
-mpiexec -np ${NTOTRANKS} -ppn ${NRANKS} -d ${NDEPTH} --cpu-bind depth -envall /home/carns/working/install-sunspot/bin/margo-p2p-bw -x 8388608 -n "cxi://" -c 8 -D 20
+mpiexec -np ${NTOTRANKS} -ppn ${NRANKS} -d ${NDEPTH} --cpu-bind depth -envall /home/carns/working/install-aurora/bin/margo-p2p-bw -x 8388608 -n "cxi://" -c 8 -D 20
 
 

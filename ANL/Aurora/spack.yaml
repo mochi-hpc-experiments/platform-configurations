@@ -5,7 +5,7 @@
 spack:
   # add package specs to the `specs` list
   specs:
-  - mochi-margo^json-c@0.13.0
+  - mochi-margo
   view: true
   modules:
     prefix_inspections:
@@ -26,6 +26,7 @@ spack:
       - oneapi/release/2024.1
   - compiler:
       spec: gcc@=12.2.0
+        # these paths are from the spack-built gcc-12 .  There is also an HPE-built gcc-12 at /opt/cray/pe/gcc/12.2.0/snos/bin/gcc
       paths:
         cc: /opt/aurora/24.086.0/spack/gcc/0.7.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-jf4ov3v3scg7dvd76qhsuugl3jp42gfn/bin/gcc
         cxx: /opt/aurora/24.086.0/spack/gcc/0.7.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-jf4ov3v3scg7dvd76qhsuugl3jp42gfn/bin/g++
@@ -41,18 +42,20 @@ spack:
     all:
       providers:
         mpi: [mpich]
+        pkgconfig: [pkg-config]
       target:
       - x86_64
       buildable: true
     mpich:
-      externals:
-      - spec: mpich@20231026 %oneapi@2024.1.0.20240308
-        prefix: /opt/aurora/24.086.0/CNDA/mpich/20231026/mpich-ofi-all-icc-default-pmix-gpu-drop20231026/
-        modules:
-        - mpich/icc-all-pmix-gpu/20231026
-        - intel_compute_runtime/release/803.29
-        - oneapi/release/2024.1
       buildable: false
+      externals:
+      - spec: mpich@20240717
+        prefix: /opt/aurora/24.180.0/CNDA/mpich/20240717/mpich-ofi-all-icc-default-pmix-gpu-drop20240717/
+        modules:
+        - mpich/icc-all-pmix-gpu/20240717
+        - oneapi/eng-compiler/2024.07.30.002
+        - intel_compute_runtime/release/803.29
+        - oneapi/release/2024.2.1
 # NOTE: the +hwloc variant for Mercury configures it to be able to
 # automatically select NICs based on hardware topology
     mercury:
@@ -66,9 +69,9 @@ spack:
     libfabric:
       buildable: false
       externals:
-      - spec: libfabric@1.15.2.0
+      - spec: libfabric@1.20.1.0
         modules:
-        - libfabric/1.15.2.0
+        - libfabric/1.20.1
     autoconf:
       buildable: false
       externals:
@@ -87,7 +90,7 @@ spack:
     openssl:
       buildable: false
       externals:
-      - spec: openssl@1.1.1d
+      - spec: openssl@1.1.1l
         prefix: /usr
     m4:
       buildable: false
@@ -97,9 +100,9 @@ spack:
     cmake:
       buildable: false
       externals:
-      - spec: cmake@3.27.7
+      - spec: cmake@3.27.9
         modules:
-        - cmake/3.27.7
+        - cmake/3.27.9
     findutils:
       buildable: false
       externals: 
