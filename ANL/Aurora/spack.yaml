@@ -42,6 +42,7 @@ spack:
     all:
       providers:
         mpi: [mpich]
+        pkgconfig: [pkg-config]
       target:
       - x86_64
       buildable: true
