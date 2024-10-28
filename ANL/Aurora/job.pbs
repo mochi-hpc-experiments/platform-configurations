@@ -1,11 +1,12 @@
 #!/bin/bash
 #PBS -l select=2
 #PBS -A CSC250STDM12_CNDA
-#PBS -l walltime=00:15:00
+#PBS -l walltime=00:10:00
 #PBS -N mochi-demo
 #PBS -k doe
+#PBS -m abe
 #PBS -l filesystems=flare 
-#PBS -q debug
+#PBS -q EarlyAppAccess
 
 export TZ='/usr/share/zoneinfo/US/Central'
 
