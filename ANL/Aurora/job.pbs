@@ -6,7 +6,7 @@
 #PBS -k doe
 #PBS -m abe
 #PBS -l filesystems=flare 
-#PBS -q EarlyAppAccess
+#PBS -q debug
 
 export TZ='/usr/share/zoneinfo/US/Central'
 
