@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -A m888
 #SBATCH -C cpu
-#SBATCH -q regular
+#SBATCH -q debug
 #SBATCH -t 10:00
 #SBATCH -n 2
 #SBATCH --ntasks-per-node=1
