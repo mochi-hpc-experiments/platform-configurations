@@ -47,16 +47,15 @@ spack:
       - x86_64
       buildable: true
     mpich:
+      buildable: false
       externals:
-      - spec: mpich@20231026 %oneapi@2024.1.0.20240308
-        prefix: /opt/aurora/24.086.0/CNDA/mpich/20231026/mpich-ofi-all-icc-default-pmix-gpu-drop20231026/
+      - spec: mpich@20240717
+        prefix: /opt/aurora/24.180.0/CNDA/mpich/20240717/mpich-ofi-all-icc-default-pmix-gpu-drop20240717/
         modules:
         - mpich/icc-all-pmix-gpu/20240717
         - oneapi/eng-compiler/2024.07.30.002
-          # if you 'module spider mpich/icc-all-mpix-gpu' you won't see compute_runtime... still needed? probably: it's loaded by default
         - intel_compute_runtime/release/803.29
         - oneapi/release/2024.2.1
-      buildable: false
 # NOTE: the +hwloc variant for Mercury configures it to be able to
 # automatically select NICs based on hardware topology
     mercury:
