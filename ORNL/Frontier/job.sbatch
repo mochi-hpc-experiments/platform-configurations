@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -A CSC300
+#SBATCH -A CSC617
 #SBATCH -J margo-p2p-bw
 #SBATCH -o %x-%j.out
 #SBATCH -t 00:15:00
