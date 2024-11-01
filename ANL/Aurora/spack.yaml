@@ -50,7 +50,7 @@ spack:
       buildable: false
       externals:
       - spec: mpich@20240717
-        prefix: /opt/aurora/24.180.0/CNDA/mpich/20240717/mpich-ofi-all-icc-default-pmix-gpu-drop20240717/
+        prefix: /opt/aurora/24.180.1/CNDA/mpich/20240717/mpich-ofi-all-icc-default-pmix-gpu-drop20240717/
         modules:
         - mpich/icc-all-pmix-gpu/20240717
         - oneapi/eng-compiler/2024.07.30.002
