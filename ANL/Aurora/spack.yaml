@@ -56,16 +56,17 @@ spack:
         - oneapi/eng-compiler/2024.07.30.002
         - intel_compute_runtime/release/803.29
         - oneapi/release/2024.2.1
-# NOTE: the +hwloc variant for Mercury configures it to be able to
-# automatically select NICs based on hardware topology
     mercury:
-      buildable: true
-      variants: ~boostsys ~checksum +hwloc
+      require:
+      - "~boostsys"
+      - "~checksum"
+      - "+debug"
+      - "+hwloc"
 # NOTE: mochi-ssg@main is needed as of August 30, 2023 in order to pick up a
 # workaround for faulty pmix library dependencies on Sunspot.  We can return to # official releases when the next version > 0.5.3 is available
     mochi-ssg:
-      buildable: true
-      version: [main]
+      require:
+      - "@main"
     libfabric:
       buildable: false
       externals:
@@ -126,9 +127,9 @@ spack:
     python:
       buildable: false
       externals:
-      - spec: python@3.9.18
+      - spec: python@3.10.13
         modules:
-        - frameworks/2024.1
+        - python/3.10.13
     groff:
       buildable: false
       externals:
