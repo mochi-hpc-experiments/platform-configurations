@@ -5,6 +5,15 @@
 spack:
   specs:
   - mochi-margo
+  concretizer:
+    unify: true
+  mirrors:
+    mochi-buildcache:
+      url: oci://ghcr.io/mochi-hpc/mochi-spack-buildcache
+      signed: false
+  config:
+    install_tree:
+      padded_length: 128
   modules:
   # The following options are recommended to ensure that Spack automatically
   # populates the runtime library path when Mochi packages are loaded.
@@ -15,17 +24,21 @@ spack:
   - compiler:
       spec: gcc@=13.2.0
       paths:
-        cc: /gpfs/fs1/soft/improv/software/spack-built/linux-rhel8-x86_64/gcc-8.5.0/gcc-13.2.0-iyqxotb/bin/gcc
-        cxx: /gpfs/fs1/soft/improv/software/spack-built/linux-rhel8-x86_64/gcc-8.5.0/gcc-13.2.0-iyqxotb/bin/g++
-        f77: /gpfs/fs1/soft/improv/software/spack-built/linux-rhel8-x86_64/gcc-8.5.0/gcc-13.2.0-iyqxotb/bin/gfortran
-        fc: /gpfs/fs1/soft/improv/software/spack-built/linux-rhel8-x86_64/gcc-8.5.0/gcc-13.2.0-iyqxotb/bin/gfortran
+        cc: gcc
+        cxx: g++
+        f77: gfortran
+        fc: gfortran
       flags: {}
       operating_system: rhel8
       target: x86_64
-      modules: []
+      modules:
+      - gcc/13.2.0
       environment: {}
       extra_rpaths: []
   packages:
+    mpi:
+      require:
+      - openmpi
     groff:
       externals:
       - spec: groff@1.22.3
@@ -136,21 +149,29 @@ spack:
       require:
       - '%gcc@13.2'
       - target=zen3
-    mpi:
-      require:
-      - mpich
     pkgconfig:
       require:
       - pkgconf
     mercury:
       require:
       - "~boostsys ~checksum +ofi ~ucx +hwloc"
+    # The preferred MPI on Improv is OpenMPI, but if you want to
+    # use Mpich, simply change mpi:require from openmpi to mpich
+    # at the top of the packages section. Make sure to change the
+    # arguments to your mpiexec command accordingly if you do so.
     mpich:
       buildable: false
       externals:
       - spec: mpich@4.2.0
         modules:
         - mpich/4.2.0-gcc-13.2.0
+    openmpi:
+      buildable: false
+      externals:
+      - spec: openmpi@5.0.5
+        modules:
+        - gcc/13.2.0
+        - openmpi/5.0.5-gcc-13.2.0
     ucx:
       buildable: false
       externals:

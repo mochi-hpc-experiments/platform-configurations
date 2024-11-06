@@ -16,9 +16,16 @@ echo "Activating env"
 spack env activate improv-demo
 spack find -fN
 
-# IMPORANT NOTE: the --cpu-bind none option to mpiexec is crucial if you
+# Getting the list of hostnames in a variable
+readarray -t HOSTNAMES < $PBS_NODEFILE
+
+# IMPORANT NOTE: the --bind-to none option to mpiexec is crucial if you
 # intend to run Mochi processes that will use additional threads or
 # execution streams.  The default CPU binding on Polaris will limit each
 # process launched with mpiexec to a single CPU core that will starve any
 # additional threads.
-mpiexec -n 2 --ppn 1 /home/carns/working/install-improv/bin/margo-p2p-bw -x 8388608 -n "verbs://" -c 8 -D 20
+#
+# -n X = total number of processes (not the number of nodes!)
+# -N Y = number of processes per node (must divide X)
+mpiexec -n 2 -N 1 --bind-to none \
+    /home/carns/working/install-improv/bin/margo-p2p-bw -x 8388608 -n "verbs://" -c 8 -D 20
