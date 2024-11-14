@@ -5,7 +5,7 @@
 spack:
   # add package specs to the `specs` list
   specs:
-  - mochi-margo^json-c@0.13.0
+  - mochi-margo
   view: true
   modules:
     prefix_inspections:
@@ -13,24 +13,25 @@ spack:
       lib64: [LD_LIBRARY_PATH]
   compilers:
   - compiler:
-      spec: oneapi@2023.12.15.002
+      spec: oneapi@=24.086.0
       paths:
-        cc: /opt/aurora/23.275.2/CNDA/oneapi/compiler/eng-20231130/bin/icx
-        cxx: /opt/aurora/23.275.2/CNDA/oneapi/compiler/eng-20231130/bin/icpx
-        f77: /opt/aurora/23.275.2/CNDA/oneapi/compiler/eng-20231130/bin/ifx
-        fc: /opt/aurora/23.275.2/CNDA/oneapi/compiler/eng-20231130/bin/ifx
+        cc: /opt/aurora/24.086.0/oneapi/compiler/2024.1/bin/icx
+        cxx: /opt/aurora/24.086.0/oneapi/compiler/2024.1/bin/icpx
+        f77: /opt/aurora/24.086.0/oneapi/compiler/2024.1/bin/ifx
+        fc: /opt/aurora/24.086.0/oneapi/compiler/2024.1/bin/ifx
       flags: {}
       operating_system: sles15
       target: x86_64
-      modules:
-      - oneapi/eng-compiler/2023.12.15.002
+      modules: 
+      - oneapi/release/2024.1
   - compiler:
       spec: gcc@=12.2.0
+        # these paths are from the spack-built gcc-12 .  There is also an HPE-built gcc-12 at /opt/cray/pe/gcc/12.2.0/snos/bin/gcc
       paths:
-        cc: /opt/aurora/23.275.2/spack/gcc/0.6.1/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-jf4ov3v3scg7dvd76qhsuugl3jp42gfn/bin/gcc
-        cxx: /opt/aurora/23.275.2/spack/gcc/0.6.1/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-jf4ov3v3scg7dvd76qhsuugl3jp42gfn/bin/g++
-        f77: /opt/aurora/23.275.2/spack/gcc/0.6.1/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-jf4ov3v3scg7dvd76qhsuugl3jp42gfn/bin/gfortran
-        fc: /opt/aurora/23.275.2/spack/gcc/0.6.1/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-jf4ov3v3scg7dvd76qhsuugl3jp42gfn/bin/gfortran
+        cc: /opt/aurora/24.086.0/spack/gcc/0.7.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-jf4ov3v3scg7dvd76qhsuugl3jp42gfn/bin/gcc
+        cxx: /opt/aurora/24.086.0/spack/gcc/0.7.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-jf4ov3v3scg7dvd76qhsuugl3jp42gfn/bin/g++
+        f77: /opt/aurora/24.086.0/spack/gcc/0.7.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-jf4ov3v3scg7dvd76qhsuugl3jp42gfn/bin/gfortran
+        fc: /opt/aurora/24.086.0/spack/gcc/0.7.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-jf4ov3v3scg7dvd76qhsuugl3jp42gfn/bin/gfortran
       flags: {}
       operating_system: sles15
       target: x86_64
@@ -41,34 +42,37 @@ spack:
     all:
       providers:
         mpi: [mpich]
+        pkgconfig: [pkg-config]
       target:
       - x86_64
       buildable: true
     mpich:
-      externals:
-      - spec: mpich@52.2 %oneapi@2023.12.15.002
-        prefix: /opt/aurora/23.275.2/CNDA/mpich/52.2/mpich-ofi-all-icc-default-pmix-gpu-drop52/
-        modules:
-        - mpich/icc-all-pmix-gpu/52.2
-        - intel_compute_runtime/release/agama-devel-736.25
-        - oneapi/eng-compiler/2023.12.15.002
       buildable: false
-# NOTE: the +hwloc variant for Mercury configures it to be able to
-# automatically select NICs based on hardware topology
+      externals:
+      - spec: mpich@20240717
+        prefix: /opt/aurora/24.180.1/CNDA/mpich/20240717/mpich-ofi-all-icc-default-pmix-gpu-drop20240717/
+        modules:
+        - mpich/icc-all-pmix-gpu/20240717
+        - oneapi/eng-compiler/2024.07.30.002
+        - intel_compute_runtime/release/803.29
+        - oneapi/release/2024.2.1
     mercury:
-      buildable: true
-      variants: ~boostsys ~checksum +hwloc
+      require:
+      - "~boostsys"
+      - "~checksum"
+      - "+debug"
+      - "+hwloc"
 # NOTE: mochi-ssg@main is needed as of August 30, 2023 in order to pick up a
 # workaround for faulty pmix library dependencies on Sunspot.  We can return to # official releases when the next version > 0.5.3 is available
     mochi-ssg:
-      buildable: true
-      version: [main]
+      require:
+      - "@main"
     libfabric:
       buildable: false
       externals:
-      - spec: libfabric@1.15.2.0
+      - spec: libfabric@1.20.1.0
         modules:
-        - libfabric/1.15.2.0
+        - libfabric/1.20.1
     autoconf:
       buildable: false
       externals:
@@ -87,7 +91,7 @@ spack:
     openssl:
       buildable: false
       externals:
-      - spec: openssl@1.1.1d
+      - spec: openssl@1.1.1l
         prefix: /usr
     m4:
       buildable: false
@@ -97,9 +101,9 @@ spack:
     cmake:
       buildable: false
       externals:
-      - spec: cmake@3.27.7
+      - spec: cmake@3.27.9
         modules:
-        - cmake/3.27.7
+        - cmake/3.27.9
     findutils:
       buildable: false
       externals: 
@@ -123,9 +127,9 @@ spack:
     python:
       buildable: false
       externals:
-      - spec: python@3.10.10
+      - spec: python@3.10.13
         modules:
-        - python/3.10.10
+        - python/3.10.13
     groff:
       buildable: false
       externals:
