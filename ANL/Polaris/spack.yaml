@@ -6,7 +6,14 @@ spack:
   # add package specs to the `specs` list
   specs:
   - mochi-margo
-  view: true
+  view:
+    default:
+      root: .spack-env/view
+      projections:
+        gcc-runtime: '{hash}'
+        all: ''
+  concretizer:
+    unify: true
   modules:
     prefix_inspections:
       lib: [LD_LIBRARY_PATH]
