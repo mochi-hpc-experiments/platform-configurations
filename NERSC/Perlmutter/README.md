@@ -1,6 +1,9 @@
 Perlmutter
 ==========
 
+Please refer to the following issue if you are having trouble building at NERSC: [#51](https://github.com/mochi-hpc-experiments/platform-configurations/issues/51):
+
+> TL;DR: don't load Perlmutter's spack module, clone your own Spack and do source spack/share/spack/setup-env.sh [(comment from @mdorier)](https://github.com/mochi-hpc-experiments/platform-configurations/issues/51#issuecomment-2535363752)
 
 Programming environment
 -----------------------
