@@ -24,10 +24,10 @@ spack:
   - compiler:
       spec: gcc@=13.2.0
       paths:
-        cc: gcc
-        cxx: g++
-        f77: gfortran
-        fc: gfortran
+        cc: /gpfs/fs1/soft/improv/software/spack-built/linux-rhel8-x86_64/gcc-8.5.0/gcc-13.2.0-iyqxotb/bin/gcc
+        cxx: /gpfs/fs1/soft/improv/software/spack-built/linux-rhel8-x86_64/gcc-8.5.0/gcc-13.2.0-iyqxotb/bin/g++
+        f77: /gpfs/fs1/soft/improv/software/spack-built/linux-rhel8-x86_64/gcc-8.5.0/gcc-13.2.0-iyqxotb/bin/gfortran
+        fc: /gpfs/fs1/soft/improv/software/spack-built/linux-rhel8-x86_64/gcc-8.5.0/gcc-13.2.0-iyqxotb/bin/gfortran
       flags: {}
       operating_system: rhel8
       target: x86_64
