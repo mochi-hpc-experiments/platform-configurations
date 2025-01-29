@@ -13,25 +13,25 @@ spack:
       lib64: [LD_LIBRARY_PATH]
   compilers:
   - compiler:
-      spec: oneapi@=24.086.0
+      spec: oneapi@=24.180.3
       paths:
-        cc: /opt/aurora/24.086.0/oneapi/compiler/2024.1/bin/icx
-        cxx: /opt/aurora/24.086.0/oneapi/compiler/2024.1/bin/icpx
-        f77: /opt/aurora/24.086.0/oneapi/compiler/2024.1/bin/ifx
-        fc: /opt/aurora/24.086.0/oneapi/compiler/2024.1/bin/ifx
+        cc: /opt/aurora/24.180.3/updates/oneapi/compiler/eng-20240629/bin/icx
+        cxx: /opt/aurora/24.180.3/updates/oneapi/compiler/eng-20240629/bin/icpx
+        f77: /opt/aurora/24.180.3/updates/oneapi/compiler/eng-20240629/bin/ifx
+        fc: /opt/aurora/24.180.3/updates/oneapi/compiler/eng-20240629/bin/ifx
       flags: {}
       operating_system: sles15
       target: x86_64
       modules: 
-      - oneapi/release/2024.1
+      - oneapi/eng-compiler/2024.07.30.002
   - compiler:
       spec: gcc@=12.2.0
         # these paths are from the spack-built gcc-12 .  There is also an HPE-built gcc-12 at /opt/cray/pe/gcc/12.2.0/snos/bin/gcc
       paths:
-        cc: /opt/aurora/24.086.0/spack/gcc/0.7.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-jf4ov3v3scg7dvd76qhsuugl3jp42gfn/bin/gcc
-        cxx: /opt/aurora/24.086.0/spack/gcc/0.7.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-jf4ov3v3scg7dvd76qhsuugl3jp42gfn/bin/g++
-        f77: /opt/aurora/24.086.0/spack/gcc/0.7.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-jf4ov3v3scg7dvd76qhsuugl3jp42gfn/bin/gfortran
-        fc: /opt/aurora/24.086.0/spack/gcc/0.7.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-jf4ov3v3scg7dvd76qhsuugl3jp42gfn/bin/gfortran
+        cc: /opt/aurora/24.180.3/spack/unified/0.8.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-zt4lle2/bin/gcc
+        cxx: /opt/aurora/24.180.3/spack/unified/0.8.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-zt4lle2/bin/c++
+        f77: /opt/aurora/24.180.3/spack/unified/0.8.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-zt4lle2/bin/gfortran
+        fc: /opt/aurora/24.180.3/spack/unified/0.8.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-zt4lle2/bin/gfortran
       flags: {}
       operating_system: sles15
       target: x86_64
@@ -49,13 +49,11 @@ spack:
     mpich:
       buildable: false
       externals:
-      - spec: mpich@20240717
-        prefix: /opt/aurora/24.180.1/CNDA/mpich/20240717/mpich-ofi-all-icc-default-pmix-gpu-drop20240717/
+      - spec: mpich@4.3.0rc3
+        prefix: /opt/aurora/24.180.3/spack/unified/0.8.0/install/linux-sles15-x86_64/oneapi-2024.07.30.002/mpich-4.3.0rc3-fzmrfta
         modules:
-        - mpich/icc-all-pmix-gpu/20240717
+        - mpich/opt/4.3.0rc3
         - oneapi/eng-compiler/2024.07.30.002
-        - intel_compute_runtime/release/803.29
-        - oneapi/release/2024.2.1
     mercury:
       require:
       - "~boostsys"
