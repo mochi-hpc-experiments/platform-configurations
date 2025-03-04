@@ -80,6 +80,11 @@ spack:
       externals:
       - spec: pkg-config@0.29.2
         prefix: /usr
+    json-c:
+      buildable: false
+      externals:
+      - spec: json-c@0.16
+        prefix: /usr
     gmake:
       buildable: false
       externals:
