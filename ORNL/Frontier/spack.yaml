@@ -90,4 +90,39 @@ spack:
       externals:
       - spec: gmake@4.2.1
         prefix: /usr
+    git:
+      buildable: false
+      externals:
+      - spec: git@2.43.0
+        prefix: /usr
+    bzip2:
+      buildable: false
+      externals:
+      - spec: bzip2@1.08
+        prefix: /usr
+    expat:
+      buildable: false
+      externals:
+      - spec: expat@2.4.4
+        prefix: /usr
+    openssl:
+      buildable: false
+      externals:
+      - spec: openssl@3.1.4
+        prefix: /usr
+    readline:
+      buildable: false
+      externals:
+      - spec: readline@7.0
+        prefix: /usr
+    sqlite:
+      buildable: false
+      externals:
+      - spec: sqlite@3.44.0
+        prefix: /usr
+    gettext:
+      buildable: false
+      externals:
+      - spec: gettext@0.21.1
+        prefix: /usr
   view: true
