@@ -22,7 +22,7 @@ from source do not support this transport.
 Process placement
 -----------------
 
-Aurora nodes have 2 sockets, each with 52 cores, however core 0 and rank 52
+Aurora nodes have 2 sockets, each with 52 cores, however core 0 and core 52
 should be avoided as they may run service processes. Hence, 102 cores are available
 in total. To bind ranks to the proper cores, use `--cpu-bind list:...` with an
 explicit list of comma-separated cores for every column-separated rank.
