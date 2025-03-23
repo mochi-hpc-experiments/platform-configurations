@@ -9,7 +9,7 @@ spack:
   view: true
   compilers:
   - compiler:
-      spec: gcc@12.3
+      spec: gcc@13.2
       paths:
         cc: cc
         cxx: CC
@@ -21,7 +21,7 @@ spack:
       modules:
       - PrgEnv-gnu
       - libfabric/1.20.1
-      - gcc-native/12.3
+      - gcc-native/13.2
       - cudatoolkit
       - xpmem
       environment:
@@ -35,7 +35,7 @@ spack:
   packages:
     all:
       require:
-      - "%gcc@12.3"
+      - "%gcc@13.2"
       - "target=zen3"
     mpi:
       require:
@@ -46,9 +46,9 @@ spack:
     cray-mpich:
       buildable: false
       externals:
-      - spec: cray-mpich@8.1.28
+      - spec: cray-mpich@8.1.30
         modules:
-        - cray-mpich/8.1.28
+        - cray-mpich/8.1.30
     mercury:
       buildable: true
       variants: ~boostsys ~checksum
