@@ -29,10 +29,10 @@ spack:
   - compiler:
       spec: gcc@12.3
       paths:
-        cc: cc
-        cxx: CC
-        f77: ftn
-        fc: ftn
+        cc: /opt/cray/pe/craype/2.7.30/bin/cc
+        cxx: /opt/cray/pe/craype/2.7.30/bin/CC
+        f77: /opt/cray/pe/craype/2.7.30/bin/ftn
+        fc: /opt/cray/pe/craype/2.7.30/bin/ftn
       flags: {}
       operating_system: sles15
       target: any
