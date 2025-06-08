@@ -27,8 +27,14 @@ in which Mochi packages will be installed.
 If you don't have Spack installed on your platform, clone it and set it up
 as follows.
 
+NOTE: as of June 2025, the development branch of Spack is aligned with the
+upcoming version 1.0 of Spack.  This version introduces numerous
+improvements, but also some incompatibilities with older environment
+configurations.  For now, we recommend using a version of Spack prior to 1.0
+to ensure compabitility with the recipes provided in this repository:
+
 ```
-$ git clone https://github.com/spack/spack.git
+$ git clone --branch v0.23.1 https://github.com/spack/spack.git
 $ . spack/share/spack/setup-env.sh
 ```
 
