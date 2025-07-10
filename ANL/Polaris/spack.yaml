@@ -64,8 +64,10 @@ spack:
         modules:
         - cray-mpich/8.1.28
     mercury:
-      buildable: true
-      variants: ~boostsys ~checksum
+      require:
+      - "@2.4.0rc5"
+      - "~boostsys"
+      - "~checksum"
     libfabric:
       buildable: false
       externals:
