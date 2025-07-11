@@ -65,7 +65,7 @@ spack:
         - cray-mpich/8.1.28
     mercury:
       require:
-      - "@2.4.0rc5"
+      - "@2.4.1rc1"
       - "~boostsys"
       - "~checksum"
     libfabric:
