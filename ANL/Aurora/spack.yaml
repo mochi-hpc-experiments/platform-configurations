@@ -13,25 +13,12 @@ spack:
       lib64: [LD_LIBRARY_PATH]
   compilers:
   - compiler:
-      spec: oneapi@=24.180.3
+      spec: gcc@=13.3.0
       paths:
-        cc: /opt/aurora/24.180.3/updates/oneapi/compiler/eng-20240629/bin/icx
-        cxx: /opt/aurora/24.180.3/updates/oneapi/compiler/eng-20240629/bin/icpx
-        f77: /opt/aurora/24.180.3/updates/oneapi/compiler/eng-20240629/bin/ifx
-        fc: /opt/aurora/24.180.3/updates/oneapi/compiler/eng-20240629/bin/ifx
-      flags: {}
-      operating_system: sles15
-      target: x86_64
-      modules: 
-      - oneapi/eng-compiler/2024.07.30.002
-  - compiler:
-      spec: gcc@=12.2.0
-        # these paths are from the spack-built gcc-12 .  There is also an HPE-built gcc-12 at /opt/cray/pe/gcc/12.2.0/snos/bin/gcc
-      paths:
-        cc: /opt/aurora/24.180.3/spack/unified/0.8.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-zt4lle2/bin/gcc
-        cxx: /opt/aurora/24.180.3/spack/unified/0.8.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-zt4lle2/bin/c++
-        f77: /opt/aurora/24.180.3/spack/unified/0.8.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-zt4lle2/bin/gfortran
-        fc: /opt/aurora/24.180.3/spack/unified/0.8.0/install/linux-sles15-x86_64/gcc-12.2.0/gcc-12.2.0-zt4lle2/bin/gfortran
+        cc: /opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/gcc-13.3.0-4enwbrb/bin/gcc
+        cxx: /opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/gcc-13.3.0-4enwbrb/bin/c++
+        f77: /opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/gcc-13.3.0-4enwbrb/bin/gfortran
+        fc: /opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/gcc-13.3.0-4enwbrb/bin/gfortran
       flags: {}
       operating_system: sles15
       target: x86_64
@@ -49,11 +36,11 @@ spack:
     mpich:
       buildable: false
       externals:
-      - spec: mpich@4.3.0rc3
-        prefix: /opt/aurora/24.180.3/spack/unified/0.8.0/install/linux-sles15-x86_64/oneapi-2024.07.30.002/mpich-4.3.0rc3-fzmrfta
+      - spec: mpich@4.3.1
+        prefix: /opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/oneapi-2025.0.5/mpich-develop-git.6037a7a-sxnhr7p/
         modules:
-        - mpich/opt/4.3.0rc3
-        - oneapi/eng-compiler/2024.07.30.002
+        - mpich/opt/develop-git.6037a7a
+        - oneapi/release/2025.0.5
     mercury:
       require:
       - "~boostsys"
@@ -68,9 +55,9 @@ spack:
     libfabric:
       buildable: false
       externals:
-      - spec: libfabric@1.20.1.0
+      - spec: libfabric@1.22.0
         modules:
-        - libfabric/1.20.1
+        - libfabric/1.22.0
     autoconf:
       buildable: false
       externals:
@@ -99,9 +86,9 @@ spack:
     cmake:
       buildable: false
       externals:
-      - spec: cmake@3.27.9
+      - spec: cmake@3.30.5
         modules:
-        - cmake/3.27.9
+        - cmake/3.30.5
     findutils:
       buildable: false
       externals: 
@@ -125,9 +112,10 @@ spack:
     python:
       buildable: false
       externals:
-      - spec: python@3.10.13
+      - spec: python@3.10.14
         modules:
-        - python/3.10.13
+        - python/3.10.14
+        prefix: /opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/python-3.10.14-c4ipjly
     groff:
       buildable: false
       externals:
