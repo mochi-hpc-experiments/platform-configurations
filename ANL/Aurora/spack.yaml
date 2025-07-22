@@ -7,6 +7,8 @@ spack:
   specs:
   - mochi-margo
   view: true
+  concretizer:
+    unify: true
   modules:
     prefix_inspections:
       lib: [LD_LIBRARY_PATH]
@@ -16,7 +18,7 @@ spack:
       spec: gcc@=13.3.0
       paths:
         cc: /opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/gcc-13.3.0-4enwbrb/bin/gcc
-        cxx: /opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/gcc-13.3.0-4enwbrb/bin/c++
+        cxx: /opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/gcc-13.3.0-4enwbrb/bin/g++
         f77: /opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/gcc-13.3.0-4enwbrb/bin/gfortran
         fc: /opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/gcc-13.3.0-4enwbrb/bin/gfortran
       flags: {}
@@ -165,4 +167,9 @@ spack:
       buildable: false
       externals:
       - spec: ncurses@6.1
+        prefix: /usr
+    daos:
+      buildable: false
+      externals:
+      - spec: daos@2.6.3
         prefix: /usr
