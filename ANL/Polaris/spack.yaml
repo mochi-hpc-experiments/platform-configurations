@@ -27,53 +27,48 @@ spack:
       padded_length: 128
   compilers:
   - compiler:
-      spec: gcc@12.3
+      spec: gcc@14.2
       paths:
-        cc: /opt/cray/pe/craype/2.7.30/bin/cc
-        cxx: /opt/cray/pe/craype/2.7.30/bin/CC
-        f77: /opt/cray/pe/craype/2.7.30/bin/ftn
-        fc: /opt/cray/pe/craype/2.7.30/bin/ftn
+        cc: /opt/cray/pe/craype/2.7.34/bin/cc
+        cxx: /opt/cray/pe/craype/2.7.34/bin/CC
+        f77: /opt/cray/pe/craype/2.7.34/bin/ftn
+        fc: /opt/cray/pe/craype/2.7.34/bin/ftn
       flags: {}
       operating_system: sles15
       target: any
       modules:
       - PrgEnv-gnu
-      - gcc-native/12.3
-      - nvhpc-mixed
+      - gcc-native/14.2
       - libfabric
       environment: {}
       extra_rpaths: []
   packages:
     all:
       require:
-      - "%gcc@12.3"
+      - "%gcc@14.2"
       - "target=zen3"
     mpi:
       require:
       - cray-mpich
-    json-c:
-      require:
-      - "@0.13.0"
     pkgconfig:
       require:
       - pkg-config
     cray-mpich:
       buildable: false
       externals:
-      - spec: cray-mpich@8.1.28
+      - spec: cray-mpich@8.1.32
         modules:
-        - cray-mpich/8.1.28
+        - cray-mpich/8.1.32
     mercury:
       require:
-      - "@2.4.1rc1"
       - "~boostsys"
       - "~checksum"
     libfabric:
       buildable: false
       externals:
-      - spec: libfabric@1.15.2.0
+      - spec: libfabric@1.22.0
         modules:
-        - libfabric/1.15.2.0
+        - libfabric/1.22.0
     autoconf:
       buildable: false
       externals:
@@ -92,8 +87,8 @@ spack:
     cmake:
       buildable: false
       externals:
-      - spec: cmake@3.27.7
-        prefix: /soft/spack/gcc/0.6.1/install/linux-sles15-x86_64/gcc-12.3.0/cmake-3.27.7-a435jtzvweeos2es6enirbxdjdqhqgdp
+      - spec: cmake@3.30.5
+        prefix: /soft/spack/pe/0.10.0/base/install/linux-sles15-x86_64/gcc-13.3.1/cmake-3.30.5-x6hbone32yqfjegmlb2zrf4xa6xbfx3y
     libtool:
       buildable: false
       externals:
@@ -102,17 +97,12 @@ spack:
     openssl:
       buildable: false
       externals:
-      - spec: openssl@1.1.1d
+      - spec: openssl@3.1.4
         prefix: /usr
     m4:
       buildable: false
       externals:
       - spec: m4@1.4.18
-        prefix: /usr
-    zlib:
-      buildable: false
-      externals:
-      - spec: zlib@1.2.11
         prefix: /usr
     pkg-config:
       buildable: false
@@ -122,5 +112,5 @@ spack:
     git:
       buildable: false
       externals:
-      - spec: git@2.35.3
+      - spec: git@2.43.0
         prefix: /usr
