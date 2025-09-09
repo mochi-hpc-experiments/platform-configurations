@@ -22,14 +22,6 @@ echo "Activating env"
 spack env activate aurora-demo
 spack find -fN
 
-NNODES=`wc -l < $PBS_NODEFILE`
-NRANKS=1          # Number of MPI ranks per node
-NDEPTH=104        # Number of hardware threads per rank, spacing between MPI ranks on a node
-
-NTOTRANKS=$(( NNODES * NRANKS ))
-
-echo "NUM_NODES=${NNODES}  TOTAL_RANKS=${NTOTRANKS}  RANKS_PER_NODE=${NRANKS}"
-
 # possibly useful environment variables; more testing is needed
 
 # export FI_CXI_OPTIMIZED_MRS=0
@@ -39,8 +31,37 @@ echo "NUM_NODES=${NNODES}  TOTAL_RANKS=${NTOTRANKS}  RANKS_PER_NODE=${NRANKS}"
 # export FI_CXI_REQ_BUF_SIZE=8388608
 # export FI_CXI_DEFAULT_CQ_SIZE=16384
 # export FI_CXI_OFLOW_BUF_SIZE=8388608
-# export FI_CXI_CQ_FILL_PERCENT=20 
+# export FI_CXI_CQ_FILL_PERCENT=20
 
-mpiexec -np ${NTOTRANKS} -ppn ${NRANKS} -d ${NDEPTH} --cpu-bind depth -envall /home/carns/working/install-aurora/bin/margo-p2p-bw -x 8388608 -n "cxi://" -c 8 -D 20
+# This option ensures that the resource manager will allocate Slingshot VNI
+# resources even if it detects that all of the processes launched by a given
+# mpiexec command are on the same node.  This is important for use cases
+# where Mochi servers or clients are started individually.
+VNI_OPTS=--single-node-vni
+# Alternatively, on Aurora you also (for now at least) have the option to
+# disable VNI allocation entirely.  In this case, Mochi will use the default
+# system service that permits communication between any processes on the
+# system.
+# VNI_OPTS=--no-vni
+
+# Note that Aurora defaults to binding each process to a single thread,
+# which will hinder performance if your Mochi processes are multithreaded.
+# The following will disable CPU binding entirely, but you can also consult
+# the mpiexec man page for more possibilities.
+BINDING_OPTS="--cpu-bind none"
+
+# Note that as of September 2025, the PALS service on Aurora has a bug that
+# prevents it from honoring the "--single-node-vni" option described above
+# for processes that are launched on the local node.  The following
+# workaround restores the correct semantic.
+export PALS_LOCAL_LAUNCH=0
+
+# Note that Margo versions 0.21.0 or later will automatically select an
+# appropriate network card from those available on each node.  You could
+# also explicitly select a specific card by using a format like
+# "cxi://cxi0".
+ADDRESS="cxi://"
+
+mpiexec -np 2 -ppn 1 ${VNI_OPTS} ${BINDING_OPTS} /home/carns/working/install-aurora/bin/margo-p2p-bw -x 8388608 -n ${ADDRESS} -c 8 -D 20
 
 
