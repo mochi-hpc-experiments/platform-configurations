@@ -17,10 +17,29 @@ echo "Activating env"
 spack env activate polaris-demo
 spack find -fN
 
-# IMPORANT NOTE: the --cpu-bind none option to mpiexec is crucial if you
-# intend to run Mochi processes that will use additional threads or
-# execution streams.  The default CPU binding on Polaris will limit each
-# process launched with mpiexec to a single CPU core that will starve any
-# additional threads.
-mpiexec -n 2 --ppn 1 --cpu-bind none /home/carns/working/install-polaris/bin/margo-p2p-bw -x 8388608 -n "cxi://" -c 8 -D 20
+# This option ensures that the resource manager will allocate Slingshot VNI
+# resources even if it detects that all of the processes launched by a given
+# mpiexec command are on the same node.  This is important for use cases
+# where Mochi servers or clients are started individually.
+VNI_OPTS=--single-node-vni
+
+# Note that Polaris defaults to binding each process to a single thread,
+# which will hinder performance if your Mochi processes are multithreaded.
+# The following will disable CPU binding entirely, but you can also consult
+# the mpiexec man page for more possibilities.
+BINDING_OPTS="--cpu-bind none"
+
+# Note that as of September 2025, the PALS service on Polaris has a bug that
+# prevents it from honoring the "--single-node-vni" option described above
+# for processes that are launched on the local node.  The following
+# workaround restores the correct semantic.
+export PALS_LOCAL_LAUNCH=0
+
+# Note that Margo versions 0.21.0 or later will automatically select an
+# appropriate network card from those available on each node.  You could
+# also explicitly select a specific card by using a format like
+# "cxi://cxi0".
+ADDRESS="cxi://"
+
+mpiexec -n 2 --ppn 1 ${VNI_OPTS} ${BINDING_OPTS} /home/carns/working/install-polaris/bin/margo-p2p-bw -x 8388608 -n ${ADDRESS} -c 8 -D 20
 
