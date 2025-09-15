@@ -41,9 +41,9 @@ therefore recommend the following; see job.qsub for a concrete example:
   script) must be launched using `mpiexec`.
 * Use the `--single-node-vni` option to mpiexec to ensure that it allocates
   a VNI in all cases.
-* Set the `PALS_LOCAL_LAUNCH=0` to work around a PALS bug that prevents the
-  above option from working correctly for processes launched on the local
-  node.
+* Set the `PALS_LOCAL_LAUNCH=0` environment variable to work around a PALS
+  bug that prevents the above option from working correctly for processes
+  launched on the local node.
 * Use mochi-margo version 0.21.0 or later for improved VNI handling and
   better load balancing of traffic across available network cards.
 
