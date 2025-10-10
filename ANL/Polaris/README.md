@@ -6,9 +6,12 @@ Programming environment
 -----------------------
 
 We recommend using the system-provided GNU compiler as specified in the
-example Spack configurations.  The GNU compiler can also be loaded in
-your normal terminal environment (outside of Spack) by running `module
-swap PrgEnv-nvidia PrgEnv-gnu`.
+example Spack configuration.  Load it in your normal terminal environment
+before activating the environment with the following command:
+
+```
+module swap PrgEnv-nvidia PrgEnv-gnu
+```
 
 Networking
 ----------

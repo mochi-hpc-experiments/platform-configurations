@@ -6,47 +6,23 @@ spack:
   # add package specs to the `specs` list
   specs:
   - mochi-margo
-  view:
-    default:
-      root: .spack-env/view
-      projections:
-        gcc-runtime: '{hash}'
-        all: ''
   concretizer:
     unify: true
   modules:
     prefix_inspections:
       lib: [LD_LIBRARY_PATH]
       lib64: [LD_LIBRARY_PATH]
-  mirrors:
-    mochi-buildcache:
-      url: oci://ghcr.io/mochi-hpc/mochi-spack-buildcache
-      signed: false
-  config:
-    install_tree:
-      padded_length: 128
-  compilers:
-  - compiler:
-      spec: gcc@14.2
-      paths:
-        cc: /opt/cray/pe/craype/2.7.34/bin/cc
-        cxx: /opt/cray/pe/craype/2.7.34/bin/CC
-        f77: /opt/cray/pe/craype/2.7.34/bin/ftn
-        fc: /opt/cray/pe/craype/2.7.34/bin/ftn
-      flags: {}
-      operating_system: sles15
-      target: any
-      modules:
-      - PrgEnv-gnu
-      - gcc-native/14.2
-      - libfabric
-      environment: {}
-      extra_rpaths: []
   packages:
-    all:
-      require:
-      - "%gcc@14.2"
-      - "target=zen3"
+    gcc:
+      externals:
+      - spec: gcc@14.2.0 languages:='c,c++,fortran'
+        prefix: /opt/cray/pe/gcc-native/14
+        target: any
+        extra_attributes:
+          compilers:
+            c: /opt/cray/pe/gcc-native/14/bin/gcc
+            cxx: /opt/cray/pe/gcc-native/14/bin/g++
+            fortran: /opt/cray/pe/gcc-native/14/bin/gfortran
     mpi:
       require:
       - cray-mpich
@@ -84,11 +60,6 @@ spack:
       externals:
       - spec: gmake@4.2.1
         prefix: /usr
-    cmake:
-      buildable: false
-      externals:
-      - spec: cmake@3.30.5
-        prefix: /soft/spack/pe/0.10.0/base/install/linux-sles15-x86_64/gcc-13.3.1/cmake-3.30.5-x6hbone32yqfjegmlb2zrf4xa6xbfx3y
     libtool:
       buildable: false
       externals:
@@ -113,4 +84,19 @@ spack:
       buildable: false
       externals:
       - spec: git@2.43.0
+        prefix: /usr
+    cmake:
+      buildable: false
+      externals:
+      - spec: cmake@3.30.5
+        prefix: /soft/spack/pe/0.10.0/base/install/linux-sles15-x86_64/gcc-13.3.1/cmake-3.30.5-x6hbone32yqfjegmlb2zrf4xa6xbfx3y
+    libxml2:
+      buildable: false
+      externals:
+      - spec: libxml2@2.10.3
+        prefix: /usr
+    ncurses:
+      buildable: false
+      externals:
+      - spec: ncurses@6.1
         prefix: /usr
