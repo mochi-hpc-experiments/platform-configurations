@@ -138,6 +138,9 @@ Notes:
 * Mercury is usually configured with either `ofi` or `ucx` support for most
   communication transports.  The corresponding libfabric or ucx package
   configurations determine how those abstractions will use the network.
+* You must add the external `mochi-spack-packages` repository in your
+  environment in order to gain access to the complete collection of Mochi
+  packages. See discussion of this point in the previous section for details.
 
 ```
 # The following options are used by packages that Mochi depends
