@@ -6,11 +6,12 @@ Programming environment
 -----------------------
 
 Before using Spack to compile Mochi on Improv, we recommend the following
-changes to your environment to load newer versions of Python, gcc, MPICH, and perl:
+changes to your environment to load default udpated versions of Python, gcc,
+MPI, and perl:
 
 - `module load python`
-- `module load gcc`
-- `module load mpich`
+- `module load gcc/13.2.0`
+- `module load openmpi`
 - `module load perl`
 
 Networking

@@ -7,36 +7,20 @@ spack:
   specs:
   - mochi-margo
   view: true
-  compilers:
-  - compiler:
-      spec: gcc@13.2
-      paths:
-        cc: cc
-        cxx: CC
-        f77: ftn
-        fc: ftn
-      flags: {}
-      operating_system: sles15
-      target: any
-      modules:
-      - PrgEnv-gnu
-      - libfabric/1.20.1
-      - gcc-native/13.2
-      - cudatoolkit
-      - xpmem
-      environment:
-        prepend_path:
-          PKG_CONFIG_PATH: /opt/cray/xpmem/default/lib64/pkgconfig/:/usr/lib64/pkgconfig
-      extra_rpaths: []
   modules:
     prefix_inspections:
       lib: [LD_LIBRARY_PATH]
       lib64: [LD_LIBRARY_PATH]
   packages:
-    all:
-      require:
-      - "%gcc@13.2"
-      - "target=zen3"
+    gcc:
+      externals:
+      - spec: gcc@13.2.1 languages:='c,c++,fortran'
+        prefix: /opt/cray/pe/gcc-native/13
+        extra_attributes:
+          compilers:
+            c: /opt/cray/pe/gcc-native/13/bin/gcc
+            cxx: /opt/cray/pe/gcc-native/13/bin/g++
+            fortran: /opt/cray/pe/gcc-native/13/bin/gfortran
     mpi:
       require:
       - cray-mpich
@@ -55,9 +39,9 @@ spack:
     libfabric:
       buildable: false
       externals:
-      - spec: libfabric@1.20.1
+      - spec: libfabric@1.22.0
         modules:
-        - libfabric/1.20.1
+        - libfabric/1.22.0
     autoconf:
       buildable: false
       externals:
@@ -98,4 +82,9 @@ spack:
       buildable: false
       externals:
       - spec: pkg-config@0.29.2
+        prefix: /usr
+    hwloc:
+      buildable: false
+      externals:
+      - spec: hwloc@2.9.0
         prefix: /usr
