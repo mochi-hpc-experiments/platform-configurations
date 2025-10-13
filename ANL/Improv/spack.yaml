@@ -36,6 +36,15 @@ spack:
       environment: {}
       extra_rpaths: []
   packages:
+    gcc:
+      externals:
+      - spec: gcc@13.2.0 languages:='c,c++,fortran'
+        prefix: /gpfs/fs1/soft/improv/software/spack-built/linux-rhel8-x86_64/gcc-8.5.0/gcc-13.2.0-iyqxotb
+        extra_attributes:
+          compilers:
+            c: /gpfs/fs1/soft/improv/software/spack-built/linux-rhel8-x86_64/gcc-8.5.0/gcc-13.2.0-iyqxotb/bin/gcc
+            cxx: /gpfs/fs1/soft/improv/software/spack-built/linux-rhel8-x86_64/gcc-8.5.0/gcc-13.2.0-iyqxotb/bin/g++
+            fortran: /gpfs/fs1/soft/improv/software/spack-built/linux-rhel8-x86_64/gcc-8.5.0/gcc-13.2.0-iyqxotb/bin/gfortran
     mpi:
       require:
       - openmpi
@@ -145,33 +154,23 @@ spack:
       externals:
       - spec: automake@1.16.1
         prefix: /usr
-    all:
-      require:
-      - '%gcc@13.2'
-      - target=zen3
+    hwloc:
+      externals:
+      - spec: hwloc@2.2.0
+        prefix: /usr
     pkgconfig:
       require:
       - pkgconf
     mercury:
       require:
       - "~boostsys ~checksum +ofi ~ucx +hwloc"
-    # The preferred MPI on Improv is OpenMPI, but if you want to
-    # use Mpich, simply change mpi:require from openmpi to mpich
-    # at the top of the packages section. Make sure to change the
-    # arguments to your mpiexec command accordingly if you do so.
-    mpich:
-      buildable: false
-      externals:
-      - spec: mpich@4.2.0
-        modules:
-        - mpich/4.2.0-gcc-13.2.0
     openmpi:
       buildable: false
       externals:
-      - spec: openmpi@5.0.5
+      - spec: openmpi@5.0.2
         modules:
         - gcc/13.2.0
-        - openmpi/5.0.5-gcc-13.2.0
+        - openmpi/5.0.2-gcc-13.2.0
     ucx:
       buildable: false
       externals:
