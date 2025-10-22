@@ -1,24 +1,6 @@
 spack:
   specs:
   - mochi-margo
-  compilers:
-  - compiler:
-      spec: gcc@13.2
-      paths:
-        cc: /opt/cray/pe/craype/2.7.33/bin/cc
-        cxx: /opt/cray/pe/craype/2.7.33/bin/CC
-        f77: /opt/cray/pe/craype/2.7.33/bin/ftn
-        fc: /opt/cray/pe/craype/2.7.33/bin/ftn
-      flags: {}
-      operating_system: sles15
-      target: x86_64
-      modules:
-      - PrgEnv-gnu
-      - gcc-native/12.3.0
-      - craype-x86-trento
-      - xpmem
-      - libfabric
-      extra_rpaths: []
   modules:
     prefix_inspections:
       lib: [LD_LIBRARY_PATH]
@@ -28,6 +10,15 @@ spack:
       providers:
         mpi: [cray-mpich]
         pkgconfig: [pkg-config]
+    gcc:
+      externals:
+      - spec: gcc@14.2.0 languages:='c,c++,fortran'
+        prefix: /opt/cray/pe/gcc-native/14
+        extra_attributes:
+          compilers:
+            c: /opt/cray/pe/gcc-native/14/bin/gcc
+            cxx: /opt/cray/pe/gcc-native/14/bin/g++
+            fortran: /opt/cray/pe/gcc-native/14/bin/gfortran
     libfabric:
       externals:
       - spec: libfabric@1.22.0
@@ -57,9 +48,8 @@ spack:
     cmake:
       buildable: false
       externals:
-      - spec: cmake@3.27.9
-        modules:
-        - cmake/3.27.9
+      - spec: cmake@3.28.3
+        prefix: /usr
     libtool:
       buildable: false
       externals:
@@ -124,5 +114,10 @@ spack:
       buildable: false
       externals:
       - spec: gettext@0.21.1
+        prefix: /usr
+    hwloc:
+      buildable: false
+      externals:
+      - spec: hwloc@2.10.0
         prefix: /usr
   view: true
