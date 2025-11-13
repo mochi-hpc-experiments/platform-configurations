@@ -34,7 +34,7 @@ spack:
         prefix: /opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/oneapi-2025.0.5/mpich-develop-git.6037a7a-sxnhr7p/
         modules:
         - mpich/opt/develop-git.6037a7a
-        - oneapi/release/2025.0.5
+        - oneapi/release/2025.2.0
     mercury:
       require:
       - "~boostsys"
@@ -73,9 +73,9 @@ spack:
     cmake:
       buildable: false
       externals:
-      - spec: cmake@3.30.5
+      - spec: cmake@3.31.8
         modules:
-        - cmake/3.30.5
+        - cmake/3.31.8
     findutils:
       buildable: false
       externals:
