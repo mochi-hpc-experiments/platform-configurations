@@ -17,6 +17,7 @@ spack:
       git: https://github.com/mochi-hpc/mochi-spack-packages.git
       # if you want to use a specific commit, uncomment and change the following line
       # commit: <commit-hash>
+      destination: $env/repos
   packages:
     gcc:
       externals:
