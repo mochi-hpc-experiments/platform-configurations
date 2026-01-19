@@ -41,7 +41,7 @@ spack:
         prefix: /opt/cray/pe/mpich/8.1.32/ofi/gnu/12.3
         modules:
         - PrgEnv-gnu/8.6.0
-        - libfabric/1.22.0
+        - libfabric/2.2.0rc1
         - cray-mpich/8.1.32
     mercury:
       require:
@@ -50,9 +50,9 @@ spack:
     libfabric:
       buildable: false
       externals:
-      - spec: libfabric@1.22.0
+      - spec: libfabric@2.22.0
         modules:
-        - libfabric/1.22.0
+        - libfabric/2.2.0rc1
     autoconf:
       buildable: false
       externals:
