@@ -50,7 +50,7 @@ spack:
     libfabric:
       buildable: false
       externals:
-      - spec: libfabric@2.22.0
+      - spec: libfabric@2.2.0
         modules:
         - libfabric/2.2.0rc1
     autoconf:
