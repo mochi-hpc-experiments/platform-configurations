@@ -108,3 +108,14 @@ spack:
       externals:
       - spec: ncurses@6.1
         prefix: /usr
+    perl:
+      buildable: false
+      externals:
+      - spec: perl@5.26.1
+        prefix: /usr
+    python:
+      buildable: false
+      externals:
+      - spec: python@3.11.5
+        modules:
+        - cray-python/3.11.5
