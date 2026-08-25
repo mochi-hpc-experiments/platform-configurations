@@ -37,12 +37,12 @@ spack:
     cray-mpich:
       buildable: false
       externals:
-      - spec: cray-mpich@8.1.32
-        prefix: /opt/cray/pe/mpich/8.1.32/ofi/gnu/12.3
+      - spec: cray-mpich@9.1.0
+        prefix: /opt/cray/pe/mpich/9.1.0/ofi/gnu/12.3
         modules:
-        - PrgEnv-gnu/8.6.0
-        - libfabric/2.2.0rc1
-        - cray-mpich/8.1.32
+        - PrgEnv-gnu/8.7.0
+        - libfabric/2.3.1
+        - cray-mpich/9.1.0
     mercury:
       require:
       - "~boostsys"
@@ -50,9 +50,9 @@ spack:
     libfabric:
       buildable: false
       externals:
-      - spec: libfabric@2.2.0
+      - spec: libfabric@2.3.1
         modules:
-        - libfabric/2.2.0rc1
+        - libfabric/2.3.1
     autoconf:
       buildable: false
       externals:
