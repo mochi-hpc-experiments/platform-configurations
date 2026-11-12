@@ -11,9 +11,9 @@ example Spack configurations.
 Networking
 ----------
 
-Polaris will use the `ofi+cxi://` transport in Mercury for native access to
+Aurora will use the `ofi+cxi://` transport in Mercury for native access to
 the Slingshot network. We recommend using the system-provided modules for
-both libfabric and MPICH.
+both libfabric and MPI.
 
 Process placement
 -----------------
