@@ -30,11 +30,11 @@ spack:
     mpich:
       buildable: false
       externals:
-      - spec: mpich@4.3.1
-        prefix: /opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/oneapi-2025.0.5/mpich-develop-git.6037a7a-sxnhr7p/
+      - spec: mpich@5.0.0
+        prefix: /opt/aurora/26.181.0/spack/unified/1.1.1/install/linux-x86_64/mpich-5.0.0.aurora_test.87e2045-frxgreu
         modules:
-        - mpich/opt/develop-git.6037a7a
-        - oneapi/release/2025.2.0
+        - mpich/prd/5.0.0.aurora_test.87e2045
+        - oneapi/release/2026.1.0
     mercury:
       require:
       - "~boostsys"
@@ -42,9 +42,9 @@ spack:
     libfabric:
       buildable: false
       externals:
-      - spec: libfabric@1.22.0
+      - spec: libfabric@2.3.1
         modules:
-        - libfabric/1.22.0
+        - libfabric/2.3.1
     autoconf:
       buildable: false
       externals:
